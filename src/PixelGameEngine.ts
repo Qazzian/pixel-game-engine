@@ -1,8 +1,8 @@
 import { Colour, COLOURS } from "./Colour";
-import * as EventEmitter from "events";
+import { EventEmitter } from "events";
 
 
-export default class PixelGameEngine extends EventEmitter{
+export default class PixelGameEngine extends EventEmitter {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D | null;
 	private width: number;
