@@ -2,7 +2,7 @@ import { Colour, COLOURS } from "./Colour";
 import { EventEmitter } from "events";
 
 
-export default class PixelGameEngine extends EventEmitter {
+export class PixelGameEngine extends EventEmitter {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D | null;
 	private width: number;
@@ -13,19 +13,30 @@ export default class PixelGameEngine extends EventEmitter {
 	private isRunning: boolean;
 
 
+	/**
+	 * Attach the PixelGameEngine to the given canvas Element's context.
+	 * Game pixels will be resized to fit in the given canvas size.
+	 *
+	 * @param canvas reference to a HTMLCanvasElement which will be affected by the draw functions
+	 * @param width Desired width of the canvas in screen pixels
+	 * @param height Desired height of the canvas in screen pixels
+	 * @param pixelWidth How many gamePixels to fit in the canvas width
+	 * @param pixelHeight How many gamePixels to fit in the canvas height
+	 */
 	constructor(canvas: HTMLCanvasElement, width: number, height: number, pixelWidth: number, pixelHeight: number) {
 		super();
+		console.info('Hello world');
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 
 		this.width = width;
 		this.height = height;
 
-		this.pixelWidth = pixelWidth;
-		this.pixelHeight = pixelHeight;
+		this.pixelWidth = width / pixelWidth;
+		this.pixelHeight = height / pixelHeight;
 
-		canvas.width = width * pixelWidth;
-		canvas.height = height * pixelHeight;
+		canvas.width = width;
+		canvas.height = height;
 
 		this.lastTimestamp = 0;
 		this.isRunning = false;
@@ -45,7 +56,7 @@ export default class PixelGameEngine extends EventEmitter {
 		this.emit('start');
 		this.lastTimestamp = 0;
 		this.isRunning = true;
-		window.requestAnimationFrame(timestamp => this.step(timestamp));
+		this.step(0);
 	}
 
 	step(timestamp: number) {

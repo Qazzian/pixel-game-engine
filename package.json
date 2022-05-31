@@ -4,7 +4,9 @@
   "description": "Simple game engine inspired by OneLoneCoder",
   "main": "index.ts",
   "scripts": {
-    "test": "jest"
+		"start": "tsc index.ts",
+    "test": "jest",
+		"build:watch": "tsc -w index.ts"
   },
   "author": "Qazzian",
   "license": "ISC",

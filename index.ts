@@ -1,10 +1,4 @@
-import PixelGameEngine from './src/PixelGameEngine';
-import {Colour} from "./src/Colour";
-import Grid from "./src/Grid";
-
-export default {
-	PixelGameEngine,
-	Colour,
-	Color: Colour,
-	Grid,
-}
+export {PixelGameEngine as PixelGameEngine} from './src/PixelGameEngine';
+export {Colour} from "./src/Colour";
+export {Colour as Color} from "./src/Colour";
+export {Grid} from "./src/Grid";

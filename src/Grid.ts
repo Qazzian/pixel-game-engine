@@ -1,5 +1,5 @@
-export default class Grid {
-	private tiles: any[][];
+export class Grid {
+	private readonly tiles: any[][];
 	private width: any;
 	private height: any;
 
