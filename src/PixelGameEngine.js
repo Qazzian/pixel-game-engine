@@ -15,20 +15,32 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
+exports.PixelGameEngine = void 0;
 var Colour_1 = require("./Colour");
-var EventEmitter = require("events");
+var events_1 = require("events");
 var PixelGameEngine = /** @class */ (function (_super) {
     __extends(PixelGameEngine, _super);
+    /**
+     * Attach the PixelGameEngine to the given canvas Element's context.
+     * Game pixels will be resized to fit in the given canvas size.
+     *
+     * @param canvas reference to a HTMLCanvasElement which will be affected by the draw functions
+     * @param width Desired width of the canvas in screen pixels
+     * @param height Desired height of the canvas in screen pixels
+     * @param pixelWidth How many gamePixels to fit in the canvas width
+     * @param pixelHeight How many gamePixels to fit in the canvas height
+     */
     function PixelGameEngine(canvas, width, height, pixelWidth, pixelHeight) {
         var _this = _super.call(this) || this;
+        console.info('Hello world');
         _this.canvas = canvas;
         _this.context = canvas.getContext('2d');
         _this.width = width;
         _this.height = height;
-        _this.pixelWidth = pixelWidth;
-        _this.pixelHeight = pixelHeight;
-        canvas.width = width * pixelWidth;
-        canvas.height = height * pixelHeight;
+        _this.pixelWidth = width / pixelWidth;
+        _this.pixelHeight = height / pixelHeight;
+        canvas.width = width;
+        canvas.height = height;
         _this.lastTimestamp = 0;
         _this.isRunning = false;
         if (_this.context) {
@@ -43,11 +55,10 @@ var PixelGameEngine = /** @class */ (function (_super) {
      * @param onUpdate{function}
      */
     PixelGameEngine.prototype.start = function () {
-        var _this = this;
         this.emit('start');
         this.lastTimestamp = 0;
         this.isRunning = true;
-        window.requestAnimationFrame(function (timestamp) { return _this.step(timestamp); });
+        this.step(0);
     };
     PixelGameEngine.prototype.step = function (timestamp) {
         var _this = this;
@@ -157,6 +168,10 @@ var PixelGameEngine = /** @class */ (function (_super) {
         context.fillStyle = color.stringify();
         context.fillRect(x * this.pixelWidth, y * this.pixelHeight, width * this.pixelWidth, height * this.pixelHeight);
     };
+    PixelGameEngine.prototype.fillBackground = function (color) {
+        if (color === void 0) { color = Colour_1.COLOURS.BLACK; }
+        this.fillRect(0, 0, this.width, this.height, color);
+    };
     /**
      * Draw an outline of a rectangle on the screen
      * @param x{number}
@@ -221,5 +236,5 @@ var PixelGameEngine = /** @class */ (function (_super) {
         context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     };
     return PixelGameEngine;
-}(EventEmitter));
-exports["default"] = PixelGameEngine;
+}(events_1.EventEmitter));
+exports.PixelGameEngine = PixelGameEngine;

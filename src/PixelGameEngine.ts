@@ -1,4 +1,4 @@
-import { Colour, COLOURS } from "./Colour";
+import {Colour, COLOURS} from "./Colour";
 import { EventEmitter } from "events";
 
 
@@ -193,6 +193,10 @@ export class PixelGameEngine extends EventEmitter {
 			width * this.pixelWidth,
 			height * this.pixelHeight
 		);
+	}
+
+	fillBackground(color: Colour=COLOURS.BLACK) {
+		this.fillRect(0, 0, this.width, this.height, color);
 	}
 
 	/**

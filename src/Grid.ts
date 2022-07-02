@@ -1,9 +1,9 @@
-export class Grid {
-	private readonly tiles: any[][];
+export class Grid <Type>{
+	private tiles: Type[][];
 	private width: any;
 	private height: any;
 
-	constructor(tiles: any[][]) {
+	constructor(tiles: Type[][]) {
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
