@@ -1,4 +1,4 @@
-import Grid from '../Grid';
+import {Grid} from '../Grid';
 import Edge from './Edge';
 
 const DIRECTION = {
@@ -102,7 +102,7 @@ function buildGeometry(
 	}
 }
 
-function addBoarders(grid: Grid) : Edge[] {
+function addBoarders(grid: Grid<any>) : Edge[] {
 	const edges = [];
 	edges.push(new Edge(0, 0, grid.width, 0));
 	edges.push(new Edge(0, 0, 0, grid.height));

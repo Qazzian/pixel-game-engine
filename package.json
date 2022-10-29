@@ -4,13 +4,16 @@
   "description": "Simple game engine inspired by OneLoneCoder",
   "main": "index.ts",
   "scripts": {
-		"start": "tsc index.ts",
+    "start": "tsc index.ts",
     "test": "jest",
-		"build:watch": "tsc -w index.ts"
+    "build:watch": "tsc -w index.ts"
   },
   "author": "Qazzian",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/jest": "^29.1.2",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
