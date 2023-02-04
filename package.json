@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc index.ts",
     "test": "jest",
-    "build:watch": "tsc -w index.ts"
+    "build:watch": "tsc -w"
   },
   "author": "Qazzian",
   "license": "ISC",
