@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc index.ts",
     "test": "jest",
+    "test:watch": "jest --watch",
     "build:watch": "tsc -w"
   },
   "author": "Qazzian",
