@@ -1,11 +1,12 @@
 import {create as Rand} from 'random-seed';
+import {Position} from "../../index";
 
 export class Random {
-	private seed: string;
-	private rand: any;
+	seed = '';
+	rand;
 
 	constructor(seed?: string|undefined) {
-		this.seed = seed ?? Date.now().toString();
+		this.seed = seed || Date.now().toString();
 		// @ts-ignore
 		this.rand = new Rand(seed);
 	}
@@ -14,11 +15,8 @@ export class Random {
 		return this.rand.intBetween(min, max);
 	}
 
-	vector() {
+	vector() :Position {
 		const angle = this.rand.floatBetween(-Math.PI, Math.PI);
-		return {
-			x: Math.cos(angle),
-			y: Math.sin(angle),
-		};
+		return new Position(Math.cos(angle), Math.sin(angle));
 	}
 }
