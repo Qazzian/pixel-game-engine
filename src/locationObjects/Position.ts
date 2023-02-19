@@ -7,5 +7,11 @@ export default class Position {
 		this.y = y;
 	}
 
+	multiply(other: Position) {
+		this.x *= other.x;
+		this.y *= other.y;
+		return this;
+	}
+
 
 }
