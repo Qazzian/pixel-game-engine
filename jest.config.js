@@ -6,5 +6,6 @@ module.exports = {
 
 	transform: {
 		...tsjPreset.transform,
-	}
+	},
+	testMatch: ["**/?(*.)+(spec|test).ts"],
 };

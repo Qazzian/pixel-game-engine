@@ -1,5 +1,5 @@
 import {create as Rand} from 'random-seed';
-import {Position} from "../../index";
+import Position from "../locationObjects/Position";
 
 export class Random {
 	seed = '';
