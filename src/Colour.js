@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.COLORS = exports.COLOURS = exports.Colour = void 0;
 var Colour = /** @class */ (function () {
     function Colour(r, g, b, a) {
@@ -42,6 +42,6 @@ exports.COLOURS = {
     MAGENTA: new Colour(255, 0, 255),
     DARK_MAGENTA: new Colour(128, 0, 128),
     VERY_DARK_MAGENTA: new Colour(64, 0, 64),
-    BLANK: new Colour(0, 0, 0, 0)
+    BLANK: new Colour(0, 0, 0, 0),
 };
 exports.COLORS = exports.COLOURS;

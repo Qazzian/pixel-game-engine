@@ -1,20 +1,22 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-exports.__esModule = true;
-exports.Grid = exports.COLORS = exports.Color = exports.COLOURS = exports.Colour = exports.PixelGameEngine = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Random = exports.Vector = exports.Position = exports.Entity = exports.Grid = exports.Area = exports.COLORS = exports.Color = exports.COLOURS = exports.Colour = exports.PixelGameEngine = void 0;
 var PixelGameEngine_1 = require("./src/PixelGameEngine");
-__createBinding(exports, PixelGameEngine_1, "PixelGameEngine", "PixelGameEngine");
+Object.defineProperty(exports, "PixelGameEngine", { enumerable: true, get: function () { return PixelGameEngine_1.PixelGameEngine; } });
 var Colour_1 = require("./src/Colour");
-__createBinding(exports, Colour_1, "Colour");
-__createBinding(exports, Colour_1, "COLOURS");
+Object.defineProperty(exports, "Colour", { enumerable: true, get: function () { return Colour_1.Colour; } });
+Object.defineProperty(exports, "COLOURS", { enumerable: true, get: function () { return Colour_1.COLOURS; } });
 var Colour_2 = require("./src/Colour");
-__createBinding(exports, Colour_2, "Colour", "Color");
-__createBinding(exports, Colour_2, "COLORS");
+Object.defineProperty(exports, "Color", { enumerable: true, get: function () { return Colour_2.Colour; } });
+Object.defineProperty(exports, "COLORS", { enumerable: true, get: function () { return Colour_2.COLORS; } });
+var Area_1 = require("./src/locationObjects/Area");
+Object.defineProperty(exports, "Area", { enumerable: true, get: function () { return Area_1.default; } });
 var Grid_1 = require("./src/Grid");
-__createBinding(exports, Grid_1, "Grid");
+Object.defineProperty(exports, "Grid", { enumerable: true, get: function () { return Grid_1.Grid; } });
+var Entity_1 = require("./src/locationObjects/Entity");
+Object.defineProperty(exports, "Entity", { enumerable: true, get: function () { return Entity_1.Entity; } });
+var Position_1 = require("./src/locationObjects/Position");
+Object.defineProperty(exports, "Position", { enumerable: true, get: function () { return Position_1.default; } });
+Object.defineProperty(exports, "Vector", { enumerable: true, get: function () { return Position_1.default; } });
+var Random_1 = require("./src/tools/Random");
+Object.defineProperty(exports, "Random", { enumerable: true, get: function () { return Random_1.Random; } });

@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Grid = void 0;
 var Grid = /** @class */ (function () {
     function Grid(tiles) {

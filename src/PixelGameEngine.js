@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PixelGameEngine = void 0;
 var Colour_1 = require("./Colour");
 var events_1 = require("events");
@@ -72,7 +72,7 @@ var PixelGameEngine = /** @class */ (function (_super) {
         var timeStats = {
             timePassed: timePassed,
             timestamp: timestamp,
-            fps: fps
+            fps: fps,
         };
         this.emit('update', timestamp);
         this.emit('after-update', timestamp, timeStats);
