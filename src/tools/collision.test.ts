@@ -22,9 +22,15 @@ describe('Collision detection', () => {
 	test('with a small object hitting a moving block.',  () => {
 		//expect(false).toBe(true);
 		const ball = new Entity(new Area(1,1,1,1), new Vector(1, 0));
-		const wall = new Entity(new Area(3, 3, 1, 3), new Vector(0, -1));
-		expect(collision(ball, wall, 1)).toBeTruthy();
+		const wall = new Entity(new Area(3, 2, 1, 3), new Vector(0, -1));
+		expect(collision(ball, wall, 2)).toBeTruthy();
 	});
 
 	// TODO moving objects that cross paths but don't hit
+	test('with a small object missing a moving block.',  () => {
+		//expect(false).toBe(true);
+		const ball = new Entity(new Area(1,1,1,1), new Vector(1, 0));
+		const wall = new Entity(new Area(3, 4, 1, 3), new Vector(0, -1));
+		expect(collision(ball, wall, 2)).toBeFalsy();
+	});
 });

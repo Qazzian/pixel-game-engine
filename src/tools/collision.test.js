@@ -18,10 +18,16 @@ describe('Collision detection', function () {
         expect((0, collision_1.default)(ball, wall, 0.5)).toBe(false);
     });
     test('with a small object hitting a moving block.', function () {
-        expect(false).toBe(true);
+        //expect(false).toBe(true);
         var ball = new index_1.Entity(new index_1.Area(1, 1, 1, 1), new index_1.Vector(1, 0));
-        var wall = new index_1.Entity(new index_1.Area(3, 0, 1, 3), new index_1.Vector(0, 0));
-        expect((0, collision_1.default)(ball, wall, 1)).toBeTruthy();
+        var wall = new index_1.Entity(new index_1.Area(3, 2, 1, 3), new index_1.Vector(0, -1));
+        expect((0, collision_1.default)(ball, wall, 2)).toBeTruthy();
     });
     // TODO moving objects that cross paths but don't hit
+    test('with a small object missing a moving block.', function () {
+        //expect(false).toBe(true);
+        var ball = new index_1.Entity(new index_1.Area(1, 1, 1, 1), new index_1.Vector(1, 0));
+        var wall = new index_1.Entity(new index_1.Area(3, 4, 1, 3), new index_1.Vector(0, -1));
+        expect((0, collision_1.default)(ball, wall, 2)).toBeFalsy();
+    });
 });
