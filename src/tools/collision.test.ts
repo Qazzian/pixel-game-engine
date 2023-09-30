@@ -1,4 +1,4 @@
-import collision from './collision';
+import collision, {testTimeFrame} from './collision';
 import {Area, Entity, Vector} from "../../index";
 
 describe('Collision detection', () => {
@@ -26,11 +26,17 @@ describe('Collision detection', () => {
 		expect(collision(ball, wall, 2)).toBeTruthy();
 	});
 
-	// TODO moving objects that cross paths but don't hit
 	test('with a small object missing a moving block.',  () => {
 		//expect(false).toBe(true);
 		const ball = new Entity(new Area(1,1,1,1), new Vector(1, 0));
 		const wall = new Entity(new Area(3, 4, 1, 3), new Vector(0, -1));
 		expect(collision(ball, wall, 2)).toBeFalsy();
+	});
+
+	test('with a small object passing through a stationary block.',  () => {
+		const ball = new Entity(new Area(1,1,1,1), new Vector(10, 0));
+		const wall = new Entity(new Area(3, 0, 1, 3), new Vector(0, 0));
+		expect(testTimeFrame(ball, wall, 1)).toBeTruthy();
+		expect(collision(ball, wall, 1)).toBeTruthy();
 	});
 });

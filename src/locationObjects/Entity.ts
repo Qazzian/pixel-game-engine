@@ -28,7 +28,26 @@ export class Entity implements EntityInterface {
 }
 
 
-export function hasCollided(subject: Entity|Area, other: Entity|Area) {
+export function hasCollided(subject: Entity | Area, other: Entity | Area) {
+	const noChanceOfCollision = (
+		subject.x + subject.width < other.x ||
+		subject.y + subject.height < other.y ||
+		subject.x > other.x + other.width ||
+		subject.y > other.y + other.height
+	);
+
+	if(noChanceOfCollision) {
+		return false;
+	}
+
+	if ( cornersIntersected(subject, other)) {
+		return true;
+	}
+
+	return objectsOverlap(subject, other);
+}
+
+function cornersIntersected(subject: Entity | Area, other: Entity | Area) {
 	// this bottom right corner is inside other block
 	if (subject.x + subject.width >= other.x &&
 		subject.x + subject.width <= other.x + other.width &&
@@ -36,6 +55,7 @@ export function hasCollided(subject: Entity|Area, other: Entity|Area) {
 		subject.y + subject.height <= other.y + other.height) {
 		return true;
 	}
+
 	// subject bottom left corner is inside other block
 	if (subject.x >= other.x &&
 		subject.x <= other.x + other.width &&
@@ -59,8 +79,21 @@ export function hasCollided(subject: Entity|Area, other: Entity|Area) {
 		subject.y <= other.y + other.height) {
 		return true;
 	}
-	// No overlap
-	return false;
+	return false
+}
+
+function objectsOverlap(subject: Entity | Area, other: Entity | Area) {
+	const subjectIsWider = subject.x <= other.x && getX2(subject) >= getX2(other)
+		&& subject.y >= other.y && getY2(subject) <= getY2(other);
+
+	if (subjectIsWider) {
+		return true;
+	}
+
+	const otherIsWider = other.x <= subject.x && getX2(other) >= getX2(subject)
+		&& other.y >= subject.y && getY2(other) <= getY2(subject);
+
+	return otherIsWider;
 }
 
 /**
@@ -68,7 +101,7 @@ export function hasCollided(subject: Entity|Area, other: Entity|Area) {
  * @param entity
  * @param timeFrame Number of milliseconds to multiply the Entities 0vector by.
  */
-export function move(entity:Entity, timeFrame: number) {
+export function move(entity: Entity, timeFrame: number) {
 	return {
 		...entity,
 		x: entity.x + (entity.vector.x * timeFrame),
@@ -83,9 +116,10 @@ export function accelerate(entity: Entity, force: Vector) {
 	}
 }
 
-export function getX2(entity: Entity) {
+export function getX2(entity: Entity | Area) {
 	return entity.x + entity.width;
 }
-export function getY2(entity: Entity) :number {
+
+export function getY2(entity: Entity | Area): number {
 	return entity.y + entity.height;
 }

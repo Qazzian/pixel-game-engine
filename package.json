@@ -4,7 +4,7 @@
   "description": "Simple game engine inspired by OneLoneCoder",
   "main": "build/index.js",
   "scripts": {
-    "start": "tsc index.ts",
+    "start": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
     "build:watch": "tsc -w"

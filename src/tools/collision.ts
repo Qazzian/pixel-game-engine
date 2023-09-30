@@ -52,7 +52,7 @@ function splitAndTest(a: Entity, b: Entity, timeFrame: number):boolean {
 
 }
 
-function testTimeFrame(a: Entity, b: Entity, timeFrame: number) {
+export function testTimeFrame(a: Entity, b: Entity, timeFrame: number) {
 
 	const movedA = move(a, timeFrame);
 	const movedB = move(b, timeFrame);

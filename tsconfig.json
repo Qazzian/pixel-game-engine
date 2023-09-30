@@ -1,7 +1,6 @@
 {
 	"files": ["index.ts"],
 	"compilerOptions": {
-
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"checkJs": false,
@@ -16,7 +15,7 @@
 		"moduleResolution": "node",
 //		"noEmit": true,
 		"noImplicitAny": true,
-		"outDir": "build",
+		"outDir": "src",
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
