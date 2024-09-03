@@ -1,20 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Position = /** @class */ (function () {
-    function Position(x, y) {
+export default class Position {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
     }
-    Position.prototype.add = function (other) {
+    add(other) {
         this.x += other.x;
         this.y += other.y;
         return this;
-    };
-    Position.prototype.multiply = function (other) {
+    }
+    multiply(other) {
         this.x *= other.x;
         this.y *= other.y;
         return this;
-    };
-    return Position;
-}());
-exports.default = Position;
+    }
+}
+//# sourceMappingURL=Position.js.map

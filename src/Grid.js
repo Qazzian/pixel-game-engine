@@ -1,13 +1,10 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Grid = void 0;
-var Grid = /** @class */ (function () {
-    function Grid(tiles) {
+export class Grid {
+    constructor(tiles) {
         this.tiles = tiles;
         this.width = tiles.length;
         this.height = tiles[0].length;
     }
-    Grid.prototype.inRange = function (x, y) {
+    inRange(x, y) {
         if (x < 0) {
             return false;
         }
@@ -18,17 +15,16 @@ var Grid = /** @class */ (function () {
             return false;
         }
         return y < this.height;
-    };
-    Grid.prototype.get = function (x, y) {
+    }
+    get(x, y) {
         if (this.inRange(x, y)) {
             return this.tiles[x][y];
         }
-    };
-    Grid.prototype.forEach = function (callback) {
-        this.tiles.forEach(function (mapRow, x) { return mapRow.forEach(function (mapTIle, y) {
+    }
+    forEach(callback) {
+        this.tiles.forEach((mapRow, x) => mapRow.forEach((mapTIle, y) => {
             callback(mapTIle, x, y);
-        }); });
-    };
-    return Grid;
-}());
-exports.Grid = Grid;
+        }));
+    }
+}
+//# sourceMappingURL=Grid.js.map
