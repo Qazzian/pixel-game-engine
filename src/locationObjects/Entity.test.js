@@ -43,5 +43,20 @@ describe('Entity Class', function () {
             var ent2 = new Entity_1.Entity(new Area_1.default(2, 0, 2, 2));
             expect((0, Entity_1.hasCollided)(ent1, ent2)).toBeTruthy();
         });
+        test('One object inside another', function () {
+            var inner = new Entity_1.Entity(new Area_1.default(3, 3, 1, 1));
+            var outer = new Entity_1.Entity(new Area_1.default(0, 0, 8, 8));
+            expect((0, Entity_1.hasCollided)(inner, outer)).toBeTruthy();
+        });
+        test('two long objects overlapping', function () {
+            var horizontalWall = new Entity_1.Entity(new Area_1.default(1, 5, 10, 1));
+            var verticalWall = new Entity_1.Entity(new Area_1.default(5, 0, 1, 10));
+            expect((0, Entity_1.hasCollided)(verticalWall, horizontalWall)).toBeTruthy();
+        });
+        test('two long objects overlapping but other way round', function () {
+            var horizontalWall = new Entity_1.Entity(new Area_1.default(1, 5, 10, 1));
+            var verticalWall = new Entity_1.Entity(new Area_1.default(5, 0, 1, 10));
+            expect((0, Entity_1.hasCollided)(horizontalWall, verticalWall)).toBeTruthy();
+        });
     });
 });

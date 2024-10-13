@@ -1,24 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.COLORS = exports.COLOURS = exports.Colour = void 0;
-var Colour = /** @class */ (function () {
-    function Colour(r, g, b, a) {
-        if (a === void 0) { a = 1; }
+export class Colour {
+    constructor(r, g, b, a = 1) {
         this.r = r;
         this.g = g;
         this.b = b;
         this.a = a;
     }
-    Colour.prototype.stringify = function () {
+    stringify() {
         // if (this.a !== 1) {
         // 	return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
         // }
-        return "rgb(".concat(this.r, ", ").concat(this.g, ", ").concat(this.b, ")");
-    };
-    return Colour;
-}());
-exports.Colour = Colour;
-exports.COLOURS = {
+        return `rgb(${this.r}, ${this.g}, ${this.b})`;
+    }
+}
+export const COLOURS = {
     BLACK: new Colour(0, 0, 0),
     WHITE: new Colour(255, 255, 255),
     GREY: new Colour(192, 192, 192),
@@ -44,4 +38,5 @@ exports.COLOURS = {
     VERY_DARK_MAGENTA: new Colour(64, 0, 64),
     BLANK: new Colour(0, 0, 0, 0),
 };
-exports.COLORS = exports.COLOURS;
+export const COLORS = COLOURS;
+//# sourceMappingURL=Colour.js.map

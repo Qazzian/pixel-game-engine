@@ -1,6 +1,11 @@
 import {Colour, COLOURS} from "./Colour";
 import { EventEmitter } from "events";
 
+export interface TimeStats {
+	timestamp: number,
+	timePassed: number,
+	fps: number,
+}
 
 export class PixelGameEngine extends EventEmitter {
 	private canvas: HTMLCanvasElement;
@@ -73,8 +78,8 @@ export class PixelGameEngine extends EventEmitter {
 			fps,
 		};
 
-		this.emit('update', timestamp);
-		this.emit('after-update', timestamp, timeStats);
+		this.emit('update', timeStats);
+		this.emit('after-update', timeStats);
 
 		window.requestAnimationFrame(timestamp => this.step(timestamp));
 	}

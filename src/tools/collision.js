@@ -1,27 +1,73 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = require("../../index");
-var Entity_1 = require("../locationObjects/Entity");
+import { Area } from "../../index";
+import { getX2, getY2, hasCollided, move } from "../locationObjects/Entity";
 /**
  * Do the two entities collide during the tick interval
- * @param a
+ * @param a An Entity to test against
  * @param b
  * @param timeFrame How many milliseconds to simulate the collision over
+ * @returns
  */
-function default_1(a, b, timeFrame) {
-    // TODO work out the translated areas for each entity xMin, yMin, xMax, yMax
-    var movedA = (0, Entity_1.move)(a, timeFrame);
-    var movedB = (0, Entity_1.move)(b, timeFrame);
-    var aMinX = Math.min(a.x, movedA.x);
-    var aMinY = Math.min(a.y, movedA.y);
-    var aMaxX = Math.max((0, Entity_1.getX2)(a), (0, Entity_1.getX2)(movedA));
-    var aMaxY = Math.max((0, Entity_1.getY2)(a), (0, Entity_1.getY2)(movedA));
-    var aSpace = new index_1.Area(aMinX, aMinY, aMaxX - aMinX, aMaxY - aMinY);
-    var bMinX = Math.min(b.x, movedB.x);
-    var bMinY = Math.min(b.y, movedB.y);
-    var bMaxX = Math.max((0, Entity_1.getX2)(b), (0, Entity_1.getX2)(movedB));
-    var bMaxY = Math.max((0, Entity_1.getY2)(b), (0, Entity_1.getY2)(movedB));
-    var bSpace = new index_1.Area(b.x, b.y, bMaxX - bMinX, bMaxY - bMinY);
-    return (0, Entity_1.hasCollided)(aSpace, bSpace);
+export default function (a, b, timeFrame) {
+    const couldHaveCollided = testTimeFrame(a, b, timeFrame);
+    if (!couldHaveCollided) {
+        return noCollision(a, b);
+    }
+    const movedA = move(a, timeFrame);
+    const movedB = move(b, timeFrame);
+    if (hasCollided(movedA, movedB)) {
+        return {
+            didCollide: true,
+            time: timeFrame,
+            a: movedA,
+            b: movedB,
+        };
+    }
+    return splitAndTest(a, b, timeFrame);
 }
-exports.default = default_1;
+function splitAndTest(a, b, timeFrame) {
+    const halfTime = timeFrame / 2;
+    const lateA = move(a, halfTime);
+    const lateB = move(b, halfTime);
+    const earlyTest = testTimeFrame(a, b, halfTime);
+    const lateTest = testTimeFrame(lateA, lateB, halfTime);
+    if (earlyTest && lateTest) {
+        // TODO need to return the sum of all previously tested timeframes
+        return {
+            didCollide: true,
+            time: timeFrame,
+            a,
+            b,
+        };
+    }
+    if (earlyTest) {
+        return splitAndTest(a, b, halfTime);
+    }
+    if (lateTest) {
+        return splitAndTest(lateA, lateB, halfTime);
+    }
+    return noCollision(a, b);
+}
+export function testTimeFrame(a, b, timeFrame) {
+    const movedA = move(a, timeFrame);
+    const movedB = move(b, timeFrame);
+    const aMinX = Math.min(a.x, movedA.x);
+    const aMinY = Math.min(a.y, movedA.y);
+    const aMaxX = Math.max(getX2(a), getX2(movedA));
+    const aMaxY = Math.max(getY2(a), getY2(movedA));
+    const aSpace = new Area(aMinX, aMinY, aMaxX - aMinX, aMaxY - aMinY);
+    const bMinX = Math.min(b.x, movedB.x);
+    const bMinY = Math.min(b.y, movedB.y);
+    const bMaxX = Math.max(getX2(b), getX2(movedB));
+    const bMaxY = Math.max(getY2(b), getY2(movedB));
+    const bSpace = new Area(b.x, b.y, bMaxX - bMinX, bMaxY - bMinY);
+    return hasCollided(aSpace, bSpace);
+}
+function noCollision(a, b) {
+    return {
+        didCollide: false,
+        time: 0,
+        a,
+        b,
+    };
+}
+//# sourceMappingURL=collision.js.map

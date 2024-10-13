@@ -1,22 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Random = void 0;
-var random_seed_1 = require("random-seed");
-var Position_1 = require("../locationObjects/Position");
-var Random = /** @class */ (function () {
-    function Random(seed) {
+import { create as Rand } from 'random-seed';
+import Position from "../locationObjects/Position";
+export class Random {
+    constructor(seed) {
         this.seed = '';
         this.seed = seed || Date.now().toString();
         // @ts-ignore
-        this.rand = new random_seed_1.create(seed);
+        this.rand = new Rand(seed);
     }
-    Random.prototype.intBetween = function (min, max) {
+    intBetween(min, max) {
         return this.rand.intBetween(min, max);
-    };
-    Random.prototype.vector = function () {
-        var angle = this.rand.floatBetween(-Math.PI, Math.PI);
-        return new Position_1.default(Math.cos(angle), Math.sin(angle));
-    };
-    return Random;
-}());
-exports.Random = Random;
+    }
+    vector() {
+        const angle = this.rand.floatBetween(-Math.PI, Math.PI);
+        return new Position(Math.cos(angle), Math.sin(angle));
+    }
+}
+//# sourceMappingURL=Random.js.map
