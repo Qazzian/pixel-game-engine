@@ -2,7 +2,8 @@
   "name": "pixel-game-engine",
   "version": "0.1.0",
   "description": "Simple game engine inspired by OneLoneCoder",
-  "main": "build/index.js",
+  "main": "index.js",
+	"type": "module",
   "scripts": {
     "start": "tsc",
     "test": "jest",

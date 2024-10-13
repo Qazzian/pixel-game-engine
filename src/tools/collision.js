@@ -32,7 +32,12 @@ function splitAndTest(a, b, timeFrame) {
     const lateTest = testTimeFrame(lateA, lateB, halfTime);
     if (earlyTest && lateTest) {
         // TODO need to return the sum of all previously tested timeframes
-        return true;
+        return {
+            didCollide: true,
+            time: timeFrame,
+            a,
+            b,
+        };
     }
     if (earlyTest) {
         return splitAndTest(a, b, halfTime);
@@ -40,7 +45,7 @@ function splitAndTest(a, b, timeFrame) {
     if (lateTest) {
         return splitAndTest(lateA, lateB, halfTime);
     }
-    return false;
+    return noCollision(a, b);
 }
 export function testTimeFrame(a, b, timeFrame) {
     const movedA = move(a, timeFrame);

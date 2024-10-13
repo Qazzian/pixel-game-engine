@@ -1,4 +1,4 @@
-import collision, {testTimeFrame} from './collision';
+import collision, {CollisionRecord, testTimeFrame} from './collision';
 import {Area, Entity, Vector} from "../../index";
 
 describe('Collision detection', () => {
@@ -49,6 +49,6 @@ describe('Collision detection', () => {
 		const ball = new Entity(new Area(1,1,1,1), new Vector(1, 0));
 		const wall = new Entity(new Area(3, 2, 1, 3), new Vector(0, -1));
 		const cr = collision(ball, wall, 2);
-		expect(cr).toMatchObject({x: 0, y:0});
+		expect(cr).toMatchObject({didCollide: true});
 	});
 });

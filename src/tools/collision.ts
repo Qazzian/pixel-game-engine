@@ -45,7 +45,12 @@ function splitAndTest(a: Entity, b: Entity, timeFrame: number):CollisionRecord {
 
 	if(earlyTest && lateTest) {
 		// TODO need to return the sum of all previously tested timeframes
-		return true;
+		return {
+			didCollide:true,
+			time: timeFrame,
+			a,
+			b,
+		};
 	}
 	if(earlyTest) {
 		return splitAndTest(a, b, halfTime);
@@ -53,7 +58,7 @@ function splitAndTest(a: Entity, b: Entity, timeFrame: number):CollisionRecord {
 	if(lateTest) {
 		return splitAndTest(lateA, lateB, halfTime);
 	}
-	return false;
+	return noCollision(a, b);
 
 }
 
