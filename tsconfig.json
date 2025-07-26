@@ -4,6 +4,7 @@
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"checkJs": false,
+		"declaration": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 //		"isolatedModules": true,
@@ -11,11 +12,11 @@
 		"lib": [
 			"DOM"
 		],
-		"module": "esnext",
+		"module": "es6",
 		"moduleResolution": "node",
 //		"noEmit": true,
 		"noImplicitAny": true,
-		"outDir": "./",
+		"outDir": "dist",
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,

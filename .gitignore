@@ -2,3 +2,7 @@
 /build/
 
 .idea/
+
+dist/
+
+esm/
