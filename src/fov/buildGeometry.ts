@@ -18,12 +18,12 @@ interface ProcessedBlock {
 }
 
 
-function buildGeometry(
-	mapTiles: any[][],
-	isBlockingTest: { (tile: any): any; (arg0: any): any; },
+function buildGeometry<Type>(
+	mapTiles: Type[][],
+	isBlockingTest: { (tile: Type): boolean; (arg0: Type): Type; },
 	addBorder: boolean=false
 	): Edge[] {
-	const parsedTiles:{[index: string]:any} = {};
+	const parsedTiles:{[index: string]:Type} = {};
 	const edges: Edge[] = [];
 	const grid = new Grid(mapTiles);
 
@@ -32,7 +32,7 @@ function buildGeometry(
 	}
 
 	try {
-		grid.forEach((mapTile: any, x: number, y: number) => {
+		grid.forEach((mapTile: Type, x: number, y: number) => {
 			if (isBlock(mapTile)) {
 				const neighbours = {
 					n: getNeighbour(x, y, DIRECTION.n),
@@ -83,17 +83,17 @@ function buildGeometry(
 		});
 	}
 	catch (error) {
-		console.error("error parsing geometry");
+		console.error("error parsing geometry", error);
 		console.info(JSON.stringify({parsedTiles, edges}));
 	}
 
 	return edges;
 
 
-	function isBlock(obj:any) {
-		return obj !== undefined && isBlockingTest(obj);
+	function isBlock(obj:Type | undefined): boolean {
+		return obj !== undefined  && isBlockingTest(obj);
 	}
-	function isNotBlock(obj: any) {
+	function isNotBlock(obj: unknown) {
 		return obj !== undefined && !isBlockingTest(obj);
 	}
 
@@ -102,7 +102,7 @@ function buildGeometry(
 	}
 }
 
-function addBoarders(grid: Grid<any>) : Edge[] {
+function addBoarders<Type>(grid: Grid<Type>) : Edge[] {
 	const edges = [];
 	edges.push(new Edge(0, 0, grid.width, 0));
 	edges.push(new Edge(0, 0, 0, grid.height));

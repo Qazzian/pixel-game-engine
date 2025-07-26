@@ -1,7 +1,7 @@
 export class Grid <Type>{
 	public readonly tiles: Type[][];
-	public readonly width: any;
-	public readonly height: any;
+	public readonly width: number;
+	public readonly height: number;
 
 	constructor(tiles: Type[][]) {
 		this.tiles = tiles;
@@ -16,13 +16,13 @@ export class Grid <Type>{
 		return y < this.height;
 	}
 
-	get(x: number, y: number) : any {
+	get(x: number, y: number) : Type | undefined {
 		if (this.inRange(x, y)) {
 			return this.tiles[x][y];
 		}
 	}
 
-	forEach(callback: { (mapTile: any, x: number, y: number): void; (arg0: any, arg1: number, arg2: number): void; }) {
+	forEach(callback: { (mapTile: Type, x: number, y: number): void; (arg0: Type, arg1: number, arg2: number): void; }) {
 		this.tiles.forEach((mapRow, x) => mapRow.forEach((mapTIle, y) => {
 			callback(mapTIle, x, y)
 		}))

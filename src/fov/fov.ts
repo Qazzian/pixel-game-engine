@@ -98,8 +98,8 @@ export function createRaysFromPoint(source: Point, radius: number, destination: 
 		.map((a) => new Ray(a, radius));
 }
 
-function sortRays(a: Ray, b: Ray) {
-	return a.angle - b.angle;
-}
+// function sortRays(a: Ray, b: Ray) {
+// 	return a.angle - b.angle;
+// }
 
 

@@ -1,4 +1,4 @@
-import collision, {CollisionRecord, testTimeFrame} from './collision';
+import collision, {testTimeFrame} from './collision';
 import {Area, Entity, Vector} from "../../index";
 
 describe('Collision detection', () => {

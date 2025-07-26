@@ -7,8 +7,7 @@ export class Random {
 
 	constructor(seed?: string|undefined) {
 		this.seed = seed || Date.now().toString();
-		// @ts-ignore
-		this.rand = new Rand(seed);
+		this.rand = Rand(this.seed);
 	}
 
 	intBetween(min: number, max: number): number {

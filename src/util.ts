@@ -8,6 +8,7 @@ export async function getASeed(): Promise<string>{
 	try {
 		return await fetchSeed();
 	}
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	catch (error) {
 		return Promise.resolve(generateSeed());
 	}
@@ -22,12 +23,3 @@ export function generateSeed(): string{
 	return Date.now().toString();
 }
 
-// Testing
-export function objMatch(obj1: any, obj2: any) {
-	const keys = Object.keys(obj1);
-
-	return keys.every((keyName) => {
-		return obj1[keyName] === obj2[keyName];
-	});
-
-}
