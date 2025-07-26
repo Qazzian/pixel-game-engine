@@ -1,4 +1,4 @@
-const { jsWithBabel: tsjPreset } = require('ts-jest/presets');
+import tsJest from "ts-jest";
 
 module.exports = {
   preset: 'ts-jest',
