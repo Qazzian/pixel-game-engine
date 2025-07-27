@@ -19,20 +19,19 @@ interface ProcessedBlock {
 
 
 function buildGeometry(
-	mapTiles: Grid<unknown>[][],
+	mapTiles: Grid<unknown>,
 	isBlockingTest: { (tile: unknown): boolean; },
 	addBorder: boolean=false
 	): Edge[] {
 	const parsedTiles:{[index: string]:ProcessedBlock} = {};
 	const edges: Edge[] = [];
-	const grid = new Grid(mapTiles);
 
 	if (addBorder) {
-		edges.push(...addBoarders(grid));
+		edges.push(...addBoarders(mapTiles));
 	}
 
 	try {
-		grid.forEach((mapTile: unknown, x: number, y: number) => {
+		mapTiles.forEach((mapTile: unknown, x: number, y: number) => {
 			if (isBlock(mapTile)) {
 				const neighbours = {
 					n: getNeighbour(x, y, DIRECTION.n),
@@ -98,7 +97,7 @@ function buildGeometry(
 	}
 
 	function getNeighbour(x:number, y:number, direction:number[]) {
-		return grid.get(x+direction[0], y+direction[1]);
+		return mapTiles.get(x+direction[0], y+direction[1]);
 	}
 }
 
