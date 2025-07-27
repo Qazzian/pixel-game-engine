@@ -22,7 +22,7 @@ export class Grid <Type>{
 		}
 	}
 
-	forEach(callback: { (mapTile: Type, x: number, y: number): void; (arg0: Type, arg1: number, arg2: number): void; }) {
+	forEach(callback: { (mapTile: Type, x: number, y: number): void}) {
 		this.tiles.forEach((mapRow, x) => mapRow.forEach((mapTIle, y) => {
 			callback(mapTIle, x, y)
 		}))

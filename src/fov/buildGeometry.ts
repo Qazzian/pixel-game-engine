@@ -18,12 +18,12 @@ interface ProcessedBlock {
 }
 
 
-function buildGeometry<Type>(
-	mapTiles: Type[][],
-	isBlockingTest: { (tile: Type): boolean; (arg0: Type): Type; },
+function buildGeometry(
+	mapTiles: Grid<unknown>[][],
+	isBlockingTest: { (tile: unknown): boolean; },
 	addBorder: boolean=false
 	): Edge[] {
-	const parsedTiles:{[index: string]:Type} = {};
+	const parsedTiles:{[index: string]:ProcessedBlock} = {};
 	const edges: Edge[] = [];
 	const grid = new Grid(mapTiles);
 
@@ -32,7 +32,7 @@ function buildGeometry<Type>(
 	}
 
 	try {
-		grid.forEach((mapTile: Type, x: number, y: number) => {
+		grid.forEach((mapTile: unknown, x: number, y: number) => {
 			if (isBlock(mapTile)) {
 				const neighbours = {
 					n: getNeighbour(x, y, DIRECTION.n),
@@ -90,7 +90,7 @@ function buildGeometry<Type>(
 	return edges;
 
 
-	function isBlock(obj:Type | undefined): boolean {
+	function isBlock(obj:unknown | undefined): boolean {
 		return obj !== undefined  && isBlockingTest(obj);
 	}
 	function isNotBlock(obj: unknown) {
@@ -102,7 +102,7 @@ function buildGeometry<Type>(
 	}
 }
 
-function addBoarders<Type>(grid: Grid<Type>) : Edge[] {
+function addBoarders(grid: Grid<unknown>) : Edge[] {
 	const edges = [];
 	edges.push(new Edge(0, 0, grid.width, 0));
 	edges.push(new Edge(0, 0, 0, grid.height));
