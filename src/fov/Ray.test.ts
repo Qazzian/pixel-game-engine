@@ -1,5 +1,5 @@
-import Ray from './Ray';
-import {degToRad} from '../util';
+import Ray from './Ray.js';
+import {degToRad} from '../util.js';
 
 test('makeRay', () => {
 	expect(new Ray(0, 10))

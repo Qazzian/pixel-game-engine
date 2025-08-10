@@ -1,4 +1,4 @@
-import Edge from './Edge';
+import Edge from './Edge.js';
 
 describe('FOV functions', () => {
 	test('Edge Class', () => {

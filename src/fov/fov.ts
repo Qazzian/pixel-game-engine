@@ -1,6 +1,6 @@
-import Edge from './Edge';
-import Ray from './Ray';
-import {Point} from './point';
+import Edge from './Edge.js';
+import Ray from './Ray.js';
+import {Point} from './point.js';
 
 interface Intersect {
 	angle: number,

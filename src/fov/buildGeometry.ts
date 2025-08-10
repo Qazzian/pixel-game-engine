@@ -1,5 +1,5 @@
-import {Grid} from '../Grid';
-import Edge from './Edge';
+import {Grid} from '../Grid.js';
+import Edge from './Edge.js';
 
 const DIRECTION = {
 	n: [0, -1],

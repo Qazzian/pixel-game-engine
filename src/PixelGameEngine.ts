@@ -1,5 +1,5 @@
-import {Colour, COLOURS} from "./Colour";
-import { EventEmitter } from "events";
+import { TypedEventTarget } from 'typescript-event-target';
+import {Colour, COLOURS} from "./Colour.js";
 
 export interface TimeStats {
 	timestamp: number,
@@ -7,7 +7,15 @@ export interface TimeStats {
 	fps: number,
 }
 
-export class PixelGameEngine extends EventEmitter {
+interface GameEvents {
+	start: CustomEvent<null>;
+	'before-update': CustomEvent<number>;
+	'update': CustomEvent<TimeStats>;
+	'after-update': CustomEvent<TimeStats>;
+	stop: CustomEvent<null>;
+}
+
+export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D | null;
 	private width: number;
@@ -58,7 +66,7 @@ export class PixelGameEngine extends EventEmitter {
 	 * @param onUpdate{function}
 	 */
 	start() {
-		this.emit('start');
+		this.dispatchTypedEvent('start', new CustomEvent('start'));
 		this.lastTimestamp = 0;
 		this.isRunning = true;
 		this.step(0);
@@ -68,7 +76,7 @@ export class PixelGameEngine extends EventEmitter {
 		if (!this.isRunning) {
 			return;
 		}
-		this.emit('before-update', timestamp);
+		this.dispatchTypedEvent('before-update', new CustomEvent('before-update', {detail: timestamp}));
 		const timePassed = timestamp - this.lastTimestamp;
 		this.lastTimestamp = timestamp;
 		const fps = Math.round(1000 / timePassed);
@@ -78,14 +86,14 @@ export class PixelGameEngine extends EventEmitter {
 			fps,
 		};
 
-		this.emit('update', timeStats);
-		this.emit('after-update', timeStats);
+		this.dispatchTypedEvent('update', new CustomEvent('update', {detail: timeStats}));
+		this.dispatchTypedEvent('after-update', new CustomEvent('after-update', {detail: timeStats}));
 
 		window.requestAnimationFrame(timestamp => this.step(timestamp));
 	}
 
 	stop() {
-		this.emit('stop');
+		this.dispatchTypedEvent('stop', new CustomEvent('stop'));
 		this.isRunning = false;
 	}
 

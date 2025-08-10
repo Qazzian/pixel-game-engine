@@ -5,9 +5,9 @@ import fov, {
 	getIntersection,
 } from './fov';
 
-import Edge from './Edge';
-import Ray from './Ray';
-import {degToRad} from '../util';
+import Edge from './Edge.js';
+import Ray from './Ray.js';
+import {degToRad} from '../util.js';
 
 describe('FOV', () => {
 	test('id defined', () => {

@@ -1,5 +1,5 @@
-import buildGeometry from './buildGeometry';
-import {Grid} from "../Grid";
+import buildGeometry from './buildGeometry.js';
+import {Grid} from "../Grid.js";
 
 
 describe('buildGeometry', () => {

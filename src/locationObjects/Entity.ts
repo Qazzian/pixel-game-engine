@@ -1,6 +1,6 @@
-import Area from "./Area";
-import Position from "./Position";
-import {Vector} from "../../index";
+import Area from "./Area.js";
+import Position from "./Position.js";
+import {Vector} from "../../index.js";
 
 
 export interface EntityInterface {

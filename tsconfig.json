@@ -12,8 +12,8 @@
 		"lib": [
 			"DOM"
 		],
-		"module": "es6",
-		"moduleResolution": "node",
+		"module": "node16",
+		"moduleResolution": "node16",
 //		"noEmit": true,
 		"noImplicitAny": true,
 		"outDir": "dist",
@@ -21,9 +21,11 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "es6"
+		"target": "es6",
+		"verbatimModuleSyntax": false
 	},
 	"externals": {
-		"rand": "random-seed"
+		"rand": "random-seed",
+		"typescript-event-target": "typescript-event-target"
 	}
 }

@@ -1,5 +1,5 @@
-import {Area, Entity} from "../../index";
-import {getX2, getY2, hasCollided, move} from "../locationObjects/Entity";
+import {Area, Entity} from "../../index.js";
+import {getX2, getY2, hasCollided, move} from "../locationObjects/Entity.js";
 
 export interface CollisionRecord {
 	didCollide: boolean,

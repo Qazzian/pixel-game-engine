@@ -1,6 +1,6 @@
-import Area from "./Area";
-import {accelerate, Entity, hasCollided, move} from "./Entity";
-import {Vector} from "../../index";
+import Area from "./Area.js";
+import {accelerate, Entity, hasCollided, move} from "./Entity.js";
+import {Vector} from "../../index.js";
 
 
 describe('Entity Class', () => {

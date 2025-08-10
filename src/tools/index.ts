@@ -1,2 +1,2 @@
-export {default as collision} from './collision';
-export {Random} from './Random';
+export {default as collision} from './collision.js';
+export {Random} from './Random.js';

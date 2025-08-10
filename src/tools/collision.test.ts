@@ -1,5 +1,5 @@
-import collision, {testTimeFrame} from './collision';
-import {Area, Entity, Vector} from "../../index";
+import collision, {testTimeFrame} from './collision.js';
+import {Area, Entity, Vector} from "../../index.js";
 
 describe('Collision detection', () => {
 	test('function definition',  () => {
