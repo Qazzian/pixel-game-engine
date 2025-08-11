@@ -1,6 +1,6 @@
 
 
-export default class Edge {
+export class Edge {
 	private readonly x1: number;
 	private readonly y1: number;
 	private x2: number;

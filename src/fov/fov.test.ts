@@ -1,9 +1,10 @@
-import fov, {
+import {
+	fov,
 	createRaysFromGeometry,
 	createRaysFromPoint,
 	findLineIntersections,
 	getIntersection,
-} from './fov';
+} from './fov.js';
 
 import Edge from './Edge.js';
 import Ray from './Ray.js';

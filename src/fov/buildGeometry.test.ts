@@ -1,4 +1,4 @@
-import buildGeometry from './buildGeometry.js';
+import {buildGeometry} from './buildGeometry.js';
 import {Grid} from "../Grid.js";
 
 

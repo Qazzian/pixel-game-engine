@@ -10,3 +10,4 @@ export {Random} from './src/tools/Random.js';
 export {default as Position, default as Vector} from './src/locationObjects/Position.js';
 export type { Point } from './src/locationObjects/Position.js';
 export * as util from './src/util.js';
+export * as fov from './src/fov/index.js'

@@ -1,4 +1,4 @@
-export default class Ray {
+export class Ray {
   angle: number;
   dx: number;
   dy: number;

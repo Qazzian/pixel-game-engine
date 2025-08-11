@@ -1,5 +1,5 @@
 import {Grid} from '../Grid.js';
-import Edge from './Edge.js';
+import {Edge} from './Edge.js';
 
 const DIRECTION = {
 	n: [0, -1],
@@ -7,8 +7,6 @@ const DIRECTION = {
 	s: [0, +1],
 	w: [-1, 0],
 };
-
-export default buildGeometry;
 
 interface ProcessedBlock {
 	n?: Edge | undefined,
@@ -18,7 +16,7 @@ interface ProcessedBlock {
 }
 
 
-function buildGeometry(
+export function buildGeometry(
 	mapTiles: Grid<unknown>,
 	isBlockingTest: { (tile: unknown): boolean; },
 	addBorder: boolean=false

@@ -1,4 +1,4 @@
-import Ray from './Ray.js';
+import {Ray} from './Ray.js';
 import {degToRad} from '../util.js';
 
 test('makeRay', () => {

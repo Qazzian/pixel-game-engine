@@ -1,5 +1,5 @@
-import Edge from './Edge.js';
-import Ray from './Ray.js';
+import {Edge} from './Edge.js';
+import {Ray} from './Ray.js';
 import {Point} from './point.js';
 
 interface Intersect {
@@ -9,18 +9,17 @@ interface Intersect {
 	distance: number,
 }
 
-export default function fov(
+export function fov(
 	source: Point,
 	geometry: Edge[],
 	radius: number,
 ) {
 	const lightRays = createRaysFromGeometry(source, geometry, radius);
-	const intersectionPoints = findLineIntersections(source, lightRays, geometry)
+	return findLineIntersections(source, lightRays, geometry)
 		.filter(line => line.angle !== 0)
 		.sort((a, b) => {
 			return a.angle - b.angle;
 		});
-	return intersectionPoints;
 }
 
 export function createRaysFromGeometry(
@@ -29,7 +28,7 @@ export function createRaysFromGeometry(
 	radius: number,) {
 	return geometry.reduce((rays: Ray[], edge: Edge) => {
 		const pointList = edge.getPoints();
-		const rayList = pointList.reduce((allRays, point) => {
+		const rayList: Ray[] = pointList.reduce((allRays, point: Point) => {
 			return allRays.concat(createRaysFromPoint(source, radius, point));
 		}, [] as Ray[]);
 
@@ -75,7 +74,7 @@ export function getIntersection(rayOrigin: Point, ray: Ray, segment: Edge): Inte
 		/ (segmentVector.dx * ray.dy - segmentVector.dy * ray.dx);
 	const T1 = (segmentVector.x + segmentVector.dx * T2 - rayOrigin.x) / ray.dx;
 
-	// Must be within parametric whatevers for RAY/SEGMENT
+	// Must be within parametric whatever for RAY/SEGMENT
 	if (T1 < 0) return null;
 	if (T2 < 0 || T2 > 1) return null;
 
