@@ -1,19 +1,19 @@
 import {
-	fov,
+	buildFov,
 	createRaysFromGeometry,
 	createRaysFromPoint,
 	findLineIntersections,
 	getIntersection,
-} from './fov.js';
+} from './buildFov.js';
 
-import Edge from './Edge.js';
-import Ray from './Ray.js';
+import {Edge} from './Edge.js';
+import {Ray} from './Ray.js';
 import {degToRad} from '../util.js';
 
 describe('FOV', () => {
 	test('id defined', () => {
-		expect(fov).toBeDefined();
-		expect(typeof fov).toBe('function');
+		expect(buildFov).toBeDefined();
+		expect(typeof buildFov).toBe('function');
 	});
 
 	test('createRaysFromGeometry', () => {

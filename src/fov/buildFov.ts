@@ -2,14 +2,14 @@ import {Edge} from './Edge.js';
 import {Ray} from './Ray.js';
 import {Point} from './point.js';
 
-interface Intersect {
+export interface Intersect {
 	angle: number,
 	x: number,
 	y: number,
 	distance: number,
 }
 
-export function fov(
+export function buildFov(
 	source: Point,
 	geometry: Edge[],
 	radius: number,
