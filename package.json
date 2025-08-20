@@ -12,10 +12,11 @@
 	],
 	"type": "module",
 	"scripts": {
+		"prepare": "npm run build",
 		"prebuild": "npm run clean",
 		"build": "tsc",
 		"build:watch": "tsc -w",
-		"clean": "rimraf dist esm",
+		"clean": "rimraf esm",
 		"lint": "eslint .",
 		"test": "jest",
 		"test:watch": "node node_modules/jest/bin/jest.js --watch",
