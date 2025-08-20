@@ -19,9 +19,11 @@
 		"build:cjs": " npx rollup esm/index.js --file dist/index.js --format cjs",
 		"build:watch": "tsc -w",
 		"clean": "rimraf esm dist",
-		"lint": "eslint .",
+		"lint": "prettier . --write && eslint .",
+		"lint:fix": "eslint . --fix",
 		"test": "jest",
 		"test:watch": "node node_modules/jest/bin/jest.js --watch",
+		"prepush": "npm run lint && npm run test -- --color && npm run build",
 		"preversion": "build",
 		"postVersion": "git push && git push --tags"
 	},
