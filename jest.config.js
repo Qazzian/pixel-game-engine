@@ -1,7 +1,3 @@
-// import {createDefaultEsmPreset} from "ts-jest";
-// const defaultEsmPreset = createDefaultEsmPreset();
-import esmResolver from "./tests/esm-resolver.js";
-
 /** @type {import('ts-jest').JestConfigWithTsJest} **/
 
 export default {
