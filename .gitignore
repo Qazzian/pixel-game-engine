@@ -1,8 +1,7 @@
 /node_modules/
 /build/
+/cjs/
+/esm/
 
 .idea/
 
-dist/
-
-esm/

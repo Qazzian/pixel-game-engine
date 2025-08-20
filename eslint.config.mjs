@@ -7,7 +7,7 @@ import pluginJest from 'eslint-plugin-jest';
 export default tseslint.config(
 	{
 		files: ['index.ts', 'src/**/*.ts', 'src/**/*.tsx'],
-		ignores: ['dist/**', 'esm/**'],
+		ignores: ['cjs/**', 'esm/**'],
 		plugins: {
 			tseslint,
 		},
@@ -15,7 +15,7 @@ export default tseslint.config(
 	},
 	{
 		files: ['**/*.test.js', '**/*.test.jsx'],
-		ignores: ['dist/**', 'esm/**'],
+		ignores: ['cjs/**', 'esm/**'],
 		plugins: { pluginJest },
 		languageOptions: {
 			globals: pluginJest.environments.globals.globals,

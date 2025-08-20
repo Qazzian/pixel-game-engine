@@ -6,7 +6,7 @@ export default {
 	entry: './src/index.ts',
 	output: {
 		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'cjs'),
 	},
 	module: {
 		rules: [
@@ -40,7 +40,7 @@ export default {
 	],
 	devtool: 'inline-source-map',
 	devServer: {
-		contentBase: './dist',
+		contentBase: './cjs',
 		port: 8081,
 	},
 };
