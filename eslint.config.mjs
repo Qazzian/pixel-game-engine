@@ -6,7 +6,7 @@ import pluginJest from 'eslint-plugin-jest';
 
 export default tseslint.config(
 	{
-		files: ['**/*.ts', '**/*.tsx'],
+		files: ['index.ts', 'src/**/*.ts', 'src/**/*.tsx'],
 		ignores: ['dist/**', 'esm/**'],
 		plugins: {
 			tseslint,

@@ -7,8 +7,7 @@ export function degToRad(deg: number) {
 export async function getASeed(): Promise<string> {
 	try {
 		return await fetchSeed();
-	} catch (error) {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	} catch {
 		return Promise.resolve(generateSeed());
 	}
 }
