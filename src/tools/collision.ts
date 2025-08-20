@@ -1,11 +1,12 @@
-import {Area, Entity} from "../../index.js";
-import {getX2, getY2, hasCollided, move} from "../locationObjects/Entity.js";
+import { Area } from '../locationObjects/Area.js';
+import { Entity } from '../locationObjects/Entity.js';
+import { getX2, getY2, hasCollided, move } from '../locationObjects/Entity.js';
 
 export interface CollisionRecord {
-	didCollide: boolean,
-	time: number,
-	a: Entity,
-	b: Entity,
+	didCollide: boolean;
+	time: number;
+	a: Entity;
+	b: Entity;
 }
 
 /**
@@ -15,17 +16,17 @@ export interface CollisionRecord {
  * @param timeFrame How many milliseconds to simulate the collision over
  * @returns
  */
-export default function(a: Entity, b: Entity, timeFrame: number): CollisionRecord {
+export function collision(a: Entity, b: Entity, timeFrame: number): CollisionRecord {
 	const couldHaveCollided = testTimeFrame(a, b, timeFrame);
-	if(!couldHaveCollided) {
-		return noCollision(a,b);
+	if (!couldHaveCollided) {
+		return noCollision(a, b);
 	}
 
 	const movedA = move(a, timeFrame);
 	const movedB = move(b, timeFrame);
 	if (hasCollided(movedA, movedB)) {
 		return {
-			didCollide:true,
+			didCollide: true,
 			time: timeFrame,
 			a: movedA,
 			b: movedB,
@@ -35,7 +36,7 @@ export default function(a: Entity, b: Entity, timeFrame: number): CollisionRecor
 	return splitAndTest(a, b, timeFrame);
 }
 
-function splitAndTest(a: Entity, b: Entity, timeFrame: number):CollisionRecord {
+function splitAndTest(a: Entity, b: Entity, timeFrame: number): CollisionRecord {
 	const halfTime = timeFrame / 2;
 	const lateA = move(a, halfTime);
 	const lateB = move(b, halfTime);
@@ -43,27 +44,25 @@ function splitAndTest(a: Entity, b: Entity, timeFrame: number):CollisionRecord {
 	const earlyTest = testTimeFrame(a, b, halfTime);
 	const lateTest = testTimeFrame(lateA, lateB, halfTime);
 
-	if(earlyTest && lateTest) {
+	if (earlyTest && lateTest) {
 		// TODO need to return the sum of all previously tested timeframes
 		return {
-			didCollide:true,
+			didCollide: true,
 			time: timeFrame,
 			a,
 			b,
 		};
 	}
-	if(earlyTest) {
+	if (earlyTest) {
 		return splitAndTest(a, b, halfTime);
 	}
-	if(lateTest) {
+	if (lateTest) {
 		return splitAndTest(lateA, lateB, halfTime);
 	}
 	return noCollision(a, b);
-
 }
 
 export function testTimeFrame(a: Entity, b: Entity, timeFrame: number) {
-
 	const movedA = move(a, timeFrame);
 	const movedB = move(b, timeFrame);
 	const aMinX = Math.min(a.x, movedA.x);
@@ -77,11 +76,10 @@ export function testTimeFrame(a: Entity, b: Entity, timeFrame: number) {
 	const bMaxX = Math.max(getX2(b), getX2(movedB));
 	const bMaxY = Math.max(getY2(b), getY2(movedB));
 
-	const bSpace =  new Area(b.x, b.y, bMaxX - bMinX, bMaxY - bMinY);
+	const bSpace = new Area(b.x, b.y, bMaxX - bMinX, bMaxY - bMinY);
 
 	return hasCollided(aSpace, bSpace);
 }
-
 
 function noCollision(a: Entity, b: Entity): CollisionRecord {
 	return {

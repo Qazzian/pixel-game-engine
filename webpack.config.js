@@ -1,5 +1,5 @@
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
 	mode: 'development',
@@ -16,22 +16,17 @@ export default {
 				exclude: /node_modules/,
 			},
 			{
-				enforce: "pre",
+				enforce: 'pre',
 				test: /\.js$/,
-				loader: "source-map-loader"
+				loader: 'source-map-loader',
 			},
 			{
 				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader',
-				],
+				use: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
-				use: [
-					'file-loader',
-				],
+				use: ['file-loader'],
 			},
 		],
 	},

@@ -1,5 +1,5 @@
-import {Grid} from '../Grid.js';
-import {Edge} from './Edge.js';
+import { Grid } from '../Grid.js';
+import { Edge } from './Edge.js';
 
 const DIRECTION = {
 	n: [0, -1],
@@ -9,19 +9,18 @@ const DIRECTION = {
 };
 
 interface ProcessedBlock {
-	n?: Edge | undefined,
-	s?: Edge | undefined,
-	e?: Edge | undefined,
-	w?: Edge | undefined,
+	n?: Edge | undefined;
+	s?: Edge | undefined;
+	e?: Edge | undefined;
+	w?: Edge | undefined;
 }
-
 
 export function buildGeometry(
 	mapTiles: Grid<unknown>,
-	isBlockingTest: { (tile: unknown): boolean; },
-	addBorder: boolean=false
-	): Edge[] {
-	const parsedTiles:{[index: string]:ProcessedBlock} = {};
+	isBlockingTest: { (tile: unknown): boolean },
+	addBorder: boolean = false,
+): Edge[] {
+	const parsedTiles: { [index: string]: ProcessedBlock } = {};
 	const edges: Edge[] = [];
 
 	if (addBorder) {
@@ -78,28 +77,26 @@ export function buildGeometry(
 				parsedTiles[`${x}_${y}`] = parsedBlock;
 			}
 		});
-	}
-	catch (error) {
-		console.error("error parsing geometry", error);
-		console.info(JSON.stringify({parsedTiles, edges}));
+	} catch (error) {
+		console.error('error parsing geometry', error);
+		console.info(JSON.stringify({ parsedTiles, edges }));
 	}
 
 	return edges;
 
-
-	function isBlock(obj:unknown | undefined): boolean {
-		return obj !== undefined  && isBlockingTest(obj);
+	function isBlock(obj: unknown | undefined): boolean {
+		return obj !== undefined && isBlockingTest(obj);
 	}
 	function isNotBlock(obj: unknown) {
 		return obj !== undefined && !isBlockingTest(obj);
 	}
 
-	function getNeighbour(x:number, y:number, direction:number[]) {
-		return mapTiles.get(x+direction[0], y+direction[1]);
+	function getNeighbour(x: number, y: number, direction: number[]) {
+		return mapTiles.get(x + direction[0], y + direction[1]);
 	}
 }
 
-function addBoarders(grid: Grid<unknown>) : Edge[] {
+function addBoarders(grid: Grid<unknown>): Edge[] {
 	const edges = [];
 	edges.push(new Edge(0, 0, grid.width, 0));
 	edges.push(new Edge(0, 0, 0, grid.height));

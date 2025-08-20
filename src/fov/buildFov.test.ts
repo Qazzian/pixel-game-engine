@@ -6,9 +6,9 @@ import {
 	getIntersection,
 } from './buildFov.js';
 
-import {Edge} from './Edge.js';
-import {Ray} from './Ray.js';
-import {degToRad} from '../util.js';
+import { Edge } from './Edge.js';
+import { Ray } from './Ray.js';
+import { degToRad } from '../util.js';
 
 describe('FOV', () => {
 	test('id defined', () => {
@@ -18,28 +18,23 @@ describe('FOV', () => {
 
 	test('createRaysFromGeometry', () => {
 		const geom = [new Edge(2, 2, 1, 0)];
-		const rayList = createRaysFromGeometry({x: 1, y: 1}, geom, 5);
+		const rayList = createRaysFromGeometry({ x: 1, y: 1 }, geom, 5);
 		expect(rayList).toBeDefined();
 		expect(rayList.length).toBe(6);
 		expect(rayList).toMatchSnapshot();
 	});
 
 	test('createRaysFromPoint', () => {
-		const origin = {x: 0, y: 0};
-		const testRays = createRaysFromPoint(origin, 10, {x: 1, y: 1});
+		const origin = { x: 0, y: 0 };
+		const testRays = createRaysFromPoint(origin, 10, { x: 1, y: 1 });
 
 		expect(testRays.length).toBe(3);
 		expect(testRays).toMatchSnapshot();
 	});
 
 	test('findLineIntersections', () => {
-		const rayOrigin = {x: 1.0, y: 1.0};
-		const geometry = [
-			new Edge(0, 0, 3, 0),
-			new Edge(0, 0, 0, 3),
-			new Edge(0, 3, 3, 0),
-			new Edge(3, 0, 0, 3),
-		];
+		const rayOrigin = { x: 1.0, y: 1.0 };
+		const geometry = [new Edge(0, 0, 3, 0), new Edge(0, 0, 0, 3), new Edge(0, 3, 3, 0), new Edge(3, 0, 0, 3)];
 		const lightRays = createRaysFromGeometry(rayOrigin, geometry, 5);
 		expect(lightRays.length).toBe(geometry.length * 2 * 3);
 		const intersections = findLineIntersections(rayOrigin, lightRays, geometry);
@@ -52,7 +47,7 @@ describe('FOV', () => {
 		//  T2 <0,
 		//  T2 > 1
 
-		const rayOrigin = {x: 1.0, y: 1.0};
+		const rayOrigin = { x: 1.0, y: 1.0 };
 		const ray = new Ray(degToRad(45), 2);
 		const intersectingEdge = new Edge(2.0, 1.0, -1.0, 1.0);
 		// set Ray origin and convert e1 to a Ray
@@ -73,7 +68,6 @@ describe('FOV', () => {
 		// 	new Edge(3, 0, 0, 3),
 		// 	new Edge(4, 0, 0, 3),
 		// ];
-
 		// const testView = fov(rayOrigin, geometry, 10);
 		// TODO how are we going to know what is in the FOV?
 		// options
@@ -85,9 +79,5 @@ describe('FOV', () => {
 		// In each case, will need a polygon that is added to as the player moves around the map to keep track of
 		//   visited places.
 		// entities should only be visible within the current fov
-
-
 	});
-
-
 });

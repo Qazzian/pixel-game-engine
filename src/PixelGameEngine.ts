@@ -1,16 +1,16 @@
 import { TypedEventTarget } from 'typescript-event-target';
-import {Colour, COLOURS} from "./Colour.js";
+import { Colour, COLOURS } from './Colour.js';
 
 export interface TimeStats {
-	timestamp: number,
-	timePassed: number,
-	fps: number,
+	timestamp: number;
+	timePassed: number;
+	fps: number;
 }
 
 interface GameEvents {
 	start: CustomEvent<null>;
 	'before-update': CustomEvent<number>;
-	'update': CustomEvent<TimeStats>;
+	update: CustomEvent<TimeStats>;
 	'after-update': CustomEvent<TimeStats>;
 	stop: CustomEvent<null>;
 }
@@ -24,7 +24,6 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 	private pixelHeight: number;
 	private lastTimestamp: number;
 	private isRunning: boolean;
-
 
 	/**
 	 * Attach the PixelGameEngine to the given canvas Element's context.
@@ -57,7 +56,7 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		if (this.context) {
 			this.context.font = `${this.pixelHeight}px monospace`;
 			this.context.textAlign = 'center';
-			this.context.textBaseline = "middle";
+			this.context.textBaseline = 'middle';
 		}
 	}
 
@@ -76,7 +75,7 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		if (!this.isRunning) {
 			return;
 		}
-		this.dispatchTypedEvent('before-update', new CustomEvent('before-update', {detail: timestamp}));
+		this.dispatchTypedEvent('before-update', new CustomEvent('before-update', { detail: timestamp }));
 		const timePassed = timestamp - this.lastTimestamp;
 		this.lastTimestamp = timestamp;
 		const fps = Math.round(1000 / timePassed);
@@ -86,10 +85,10 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 			fps,
 		};
 
-		this.dispatchTypedEvent('update', new CustomEvent('update', {detail: timeStats}));
-		this.dispatchTypedEvent('after-update', new CustomEvent('after-update', {detail: timeStats}));
+		this.dispatchTypedEvent('update', new CustomEvent('update', { detail: timeStats }));
+		this.dispatchTypedEvent('after-update', new CustomEvent('after-update', { detail: timeStats }));
 
-		window.requestAnimationFrame(timestamp => this.step(timestamp));
+		window.requestAnimationFrame((timestamp) => this.step(timestamp));
 	}
 
 	stop() {
@@ -97,9 +96,9 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		this.isRunning = false;
 	}
 
-	getContext() : CanvasRenderingContext2D {
+	getContext(): CanvasRenderingContext2D {
 		if (!this.context) {
-			throw new Error("Context element not initialised");
+			throw new Error('Context element not initialised');
 		}
 		return this.context;
 	}
@@ -109,7 +108,6 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		context.fillStyle = backgroundColor.stringify();
 		context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 	}
-
 
 	/**
 	 * Draw a game pixel on the screen.
@@ -149,7 +147,7 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 				x1 * this.pixelWidth,
 				top * this.pixelHeight,
 				this.pixelWidth,
-				(Math.abs(dy) * this.pixelHeight) + this.pixelHeight
+				Math.abs(dy) * this.pixelHeight + this.pixelHeight,
 			);
 		}
 		// horizontal
@@ -158,18 +156,18 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 			return context.fillRect(
 				left * this.pixelWidth,
 				y1 * this.pixelHeight,
-				(Math.abs(dx) * this.pixelWidth) + this.pixelWidth,
-				this.pixelHeight
+				Math.abs(dx) * this.pixelWidth + this.pixelWidth,
+				this.pixelHeight,
 			);
 		}
 
 		const yPre = y1 > y2 ? this.pixelHeight : 0;
 		const yPost = y1 < y2 ? this.pixelHeight : 0;
 		context.beginPath();
-		context.moveTo(x1 * this.pixelWidth, (y1 * this.pixelHeight) + yPre);
-		context.lineTo((x1 * this.pixelWidth) + this.pixelWidth, (y1 * this.pixelHeight) + yPre);
-		context.lineTo((x2 * this.pixelWidth) + this.pixelWidth, (y2 * this.pixelHeight) + yPost);
-		context.lineTo(x2 * this.pixelWidth, (y2 * this.pixelHeight) + yPost);
+		context.moveTo(x1 * this.pixelWidth, y1 * this.pixelHeight + yPre);
+		context.lineTo(x1 * this.pixelWidth + this.pixelWidth, y1 * this.pixelHeight + yPre);
+		context.lineTo(x2 * this.pixelWidth + this.pixelWidth, y2 * this.pixelHeight + yPost);
+		context.lineTo(x2 * this.pixelWidth, y2 * this.pixelHeight + yPost);
 		context.closePath();
 		context.fill();
 	}
@@ -198,15 +196,10 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 	fillRect(x: number, y: number, width: number, height: number, color: Colour) {
 		const context = this.getContext();
 		context.fillStyle = color.stringify();
-		context.fillRect(
-			x * this.pixelWidth,
-			y * this.pixelHeight,
-			width * this.pixelWidth,
-			height * this.pixelHeight
-		);
+		context.fillRect(x * this.pixelWidth, y * this.pixelHeight, width * this.pixelWidth, height * this.pixelHeight);
 	}
 
-	fillBackground(color: Colour=COLOURS.BLACK) {
+	fillBackground(color: Colour = COLOURS.BLACK) {
 		this.fillRect(0, 0, this.width, this.height, color);
 	}
 
@@ -225,10 +218,11 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		for (let dx = 0; dx < this.pixelWidth; dx++) {
 			for (let dy = 0; dy < this.pixelHeight; dy++) {
 				context.strokeRect(
-					(x * this.pixelWidth) + dx,
-					(y * this.pixelHeight) + dy,
+					x * this.pixelWidth + dx,
+					y * this.pixelHeight + dy,
 					width * this.pixelWidth,
-					height * this.pixelHeight);
+					height * this.pixelHeight,
+				);
 			}
 		}
 	}
@@ -238,12 +232,12 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 	 * @param coords[] Array of {x, y} coordinate pairs
 	 * @param colour{Colour}
 	 */
-	drawPolygon(coords: {x:number, y: number}[], colour: Colour) {
+	drawPolygon(coords: { x: number; y: number }[], colour: Colour) {
 		const context = this.getContext();
 		const startPos = coords[0];
 		context.strokeStyle = colour.stringify();
 		context.beginPath();
-		context.moveTo(startPos.x* this.pixelWidth, startPos.y*this.pixelHeight);
+		context.moveTo(startPos.x * this.pixelWidth, startPos.y * this.pixelHeight);
 
 		coords.forEach((pos) => {
 			context.lineTo(pos.x * this.pixelWidth, pos.y * this.pixelHeight);
@@ -251,7 +245,6 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 
 		context.lineTo(startPos.x * this.pixelWidth, startPos.y * this.pixelHeight);
 		context.stroke();
-
 	}
 
 	/**
@@ -265,8 +258,8 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 		const context = this.getContext();
 		context.fillStyle = colour.stringify();
 
-		const charX = x * this.pixelWidth + (this.pixelWidth / 2);
-		const charY = y * this.pixelHeight + (this.pixelHeight / 2);
+		const charX = x * this.pixelWidth + this.pixelWidth / 2;
+		const charY = y * this.pixelHeight + this.pixelHeight / 2;
 		context.fillText(character, charX, charY);
 	}
 
@@ -276,7 +269,11 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 	 * @param sourcePosition{[x, y, width, height]} The position of the sprite in the source image
 	 * @param destinationPosition{[x, y]} Position to place the sprite in the final image
 	 */
-	drawSprite(image: CanvasImageSource, sourcePosition: [number, number, number, number], destinationPosition: number[]) {
+	drawSprite(
+		image: CanvasImageSource,
+		sourcePosition: [number, number, number, number],
+		destinationPosition: number[],
+	) {
 		const context = this.getContext();
 		const [sx, sy, sw, sh] = sourcePosition;
 		const dx = destinationPosition[0] * this.pixelWidth;
@@ -285,5 +282,4 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> {
 
 		context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 	}
-
 }

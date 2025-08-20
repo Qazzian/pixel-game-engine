@@ -3,16 +3,16 @@ export interface Point {
 	y: number;
 }
 
-export default class Position {
+export class Position {
 	public x: number;
 	public y: number;
 
-	constructor(x:number, y:number) {
+	constructor(x: number, y: number) {
 		this.x = x;
 		this.y = y;
 	}
 
-	add(other:Position) {
+	add(other: Position) {
 		this.x += other.x;
 		this.y += other.y;
 		return this;
@@ -24,5 +24,7 @@ export default class Position {
 		return this;
 	}
 
-
+	equals(other: Position) {
+		return this.x === other.x && this.y === other.y;
+	}
 }

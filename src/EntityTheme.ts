@@ -1,4 +1,4 @@
-import {Colour} from "./Colour.js";
+import { Colour } from './Colour.js';
 
 export default class EntityTheme {
 	public char: string;

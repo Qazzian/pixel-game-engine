@@ -2,23 +2,20 @@
 
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import pluginJest from "eslint-plugin-jest";
+import pluginJest from 'eslint-plugin-jest';
 
 export default tseslint.config(
 	{
 		files: ['**/*.ts', '**/*.tsx'],
-		ignores: ["dist/**", "esm/**"],
+		ignores: ['dist/**', 'esm/**'],
 		plugins: {
 			tseslint,
 		},
-		extends: [
-			eslint.configs.recommended,
-			tseslint.configs.recommended,
-		]
+		extends: [eslint.configs.recommended, tseslint.configs.recommended],
 	},
 	{
 		files: ['**/*.test.js', '**/*.test.jsx'],
-		ignores: ["dist/**", "esm/**"],
+		ignores: ['dist/**', 'esm/**'],
 		plugins: { pluginJest },
 		languageOptions: {
 			globals: pluginJest.environments.globals.globals,
@@ -30,5 +27,5 @@ export default tseslint.config(
 			'jest/prefer-to-have-length': 'warn',
 			'jest/valid-expect': 'error',
 		},
-	}
+	},
 );

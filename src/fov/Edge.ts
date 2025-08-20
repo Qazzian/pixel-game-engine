@@ -1,5 +1,3 @@
-
-
 export class Edge {
 	private readonly x1: number;
 	private readonly y1: number;
@@ -13,7 +11,7 @@ export class Edge {
 	 * @param {number} dx - x change
 	 * @param {number} dy - y change
 	 */
-	constructor(x1:number, y1:number, dx?:number, dy?:number) {
+	constructor(x1: number, y1: number, dx?: number, dy?: number) {
 		this.x1 = x1;
 		this.y1 = y1;
 
@@ -25,15 +23,15 @@ export class Edge {
 		}
 	}
 
-	extend(dx:number, dy:number) {
+	extend(dx: number, dy: number) {
 		this.x2 += dx;
 		this.y2 += dy;
 	}
 
 	getPoints() {
 		return [
-			{x: this.x1, y: this.y1},
-			{x: this.x2, y: this.y2},
+			{ x: this.x1, y: this.y1 },
+			{ x: this.x2, y: this.y2 },
 		];
 	}
 

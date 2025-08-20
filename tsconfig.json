@@ -9,9 +9,7 @@
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"jsx": "react",
-		"lib": [
-			"DOM"
-		],
+		"lib": ["DOM"],
 		"target": "es2016",
 		"module": "esnext",
 		"moduleResolution": "node",

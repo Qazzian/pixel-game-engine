@@ -1,24 +1,22 @@
-import Area from "./Area.js";
-import {accelerate, Entity, hasCollided, move} from "./Entity.js";
-import {Vector} from "../../index.js";
-
+import Area from './Area.js';
+import { accelerate, Entity, hasCollided, move } from './Entity.js';
+import { Vector } from '../../index.js';
 
 describe('Entity Class', () => {
 	test('constructor', () => {
 		const ent1 = new Entity(new Area(1, 1, 2, 2));
 		expect(ent1).toBeDefined();
-		expect(ent1).toMatchObject({x: 1, y: 1, width: 2, height: 2});
-		expect(ent1.vector).toMatchObject({x: 0, y: 0});
+		expect(ent1).toMatchObject({ x: 1, y: 1, width: 2, height: 2 });
+		expect(ent1.vector).toMatchObject({ x: 0, y: 0 });
 	});
 
 	test('Movement', () => {
 		const ent1 = new Entity(new Area(1, 1, 2, 2));
 		const movingEntity = accelerate(ent1, new Vector(1, 0));
-		expect(movingEntity.vector).toMatchObject({x: 1, y: 0});
+		expect(movingEntity.vector).toMatchObject({ x: 1, y: 0 });
 		const movedEntity = move(movingEntity, 10);
-		expect(movedEntity).toMatchObject({x: 11, y: 1, vector: {x: 1, y: 0}});
+		expect(movedEntity).toMatchObject({ x: 11, y: 1, vector: { x: 1, y: 0 } });
 	});
-
 
 	describe('collision', () => {
 		test('no collision', () => {
@@ -51,7 +49,7 @@ describe('Entity Class', () => {
 			expect(hasCollided(ent1, ent2)).toBeTruthy();
 		});
 
-		test('One object inside another',  () => {
+		test('One object inside another', () => {
 			const inner = new Entity(new Area(3, 3, 1, 1));
 			const outer = new Entity(new Area(0, 0, 8, 8));
 			expect(hasCollided(inner, outer)).toBeTruthy();
@@ -69,6 +67,4 @@ describe('Entity Class', () => {
 			expect(hasCollided(horizontalWall, verticalWall)).toBeTruthy();
 		});
 	});
-
-
 });

@@ -1,4 +1,4 @@
-export default class Area {
+export class Area {
 	public x1: number;
 	public x2: number;
 	public y1: number;
@@ -6,7 +6,7 @@ export default class Area {
 	public width: number;
 	public height: number;
 
-	constructor(x:number, y:number, width:number, height:number) {
+	constructor(x: number, y: number, width: number, height: number) {
 		this.x1 = x;
 		this.x2 = x + width;
 		this.y1 = y;
@@ -15,7 +15,7 @@ export default class Area {
 		this.height = height;
 	}
 
-	get x () {
+	get x() {
 		return this.x1;
 	}
 
@@ -24,12 +24,16 @@ export default class Area {
 		this.width = this.x2 - this.x1;
 	}
 
-	get y () {
+	get y() {
 		return this.y1;
 	}
 
 	set y(y: number) {
 		this.y1 = y;
 		this.height = this.y2 - this.y1;
+	}
+
+	equals(other: Area): boolean {
+		return this.x1 === other.x1 && this.x2 === other.x2 && this.y1 === other.y1 && this.y2 === other.y2;
 	}
 }
