@@ -1,5 +1,6 @@
 import { TypedEventTarget } from 'typescript-event-target';
 import { Colour, COLOURS } from './Colour.js';
+import { DrawInterface } from './types/DrawInterface';
 
 export interface TimeStats {
 	timestamp: number;
@@ -15,7 +16,7 @@ interface GameEvents {
 	stop: CustomEvent<null>;
 }
 
-export class PixelGameEngine extends TypedEventTarget<GameEvents> {
+export class PixelGameEngine extends TypedEventTarget<GameEvents> implements DrawInterface {
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D | null;
 	private width: number;
