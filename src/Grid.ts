@@ -34,10 +34,12 @@ export class Grid<Type> {
 	}
 
 	forEach(callback: { (mapTile: Type, x: number, y: number): void }) {
-		this.tiles.forEach((mapRow, x) =>
+		if (this.tiles.length === 0) return;
+		this.tiles.forEach((mapRow, x) => {
+			if (mapRow.length === 0) return;
 			mapRow.forEach((mapTIle, y) => {
 				callback(mapTIle, x, y);
-			}),
-		);
+			});
+		});
 	}
 }
