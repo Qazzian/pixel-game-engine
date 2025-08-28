@@ -1,6 +1,10 @@
+import jsdom from 'jsdom';
+import 'jest-canvas-mock';
+
 import { TypedEventTarget } from 'typescript-event-target';
 import { Colour, COLOURS } from './Colour.js';
 import { DrawInterface } from './types/DrawInterface';
+import { Position } from './locationObjects/Position';
 
 export interface TimeStats {
 	timestamp: number;
@@ -38,7 +42,6 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	 */
 	constructor(canvas: HTMLCanvasElement, width: number, height: number, pixelWidth: number, pixelHeight: number) {
 		super();
-		console.info('Hello world');
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 
@@ -63,7 +66,6 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 
 	/**
 	 * Start listening to the animation frames
-	 * @param onUpdate{function}
 	 */
 	start() {
 		this.dispatchTypedEvent('start', new CustomEvent('start'));
@@ -233,7 +235,7 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	 * @param coords[] Array of {x, y} coordinate pairs
 	 * @param colour{Colour}
 	 */
-	drawPolygon(coords: { x: number; y: number }[], colour: Colour) {
+	drawPolygon(coords: Position[], colour: Colour) {
 		const context = this.getContext();
 		const startPos = coords[0];
 		context.strokeStyle = colour.stringify();
