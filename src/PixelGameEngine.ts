@@ -1,6 +1,3 @@
-import jsdom from 'jsdom';
-import 'jest-canvas-mock';
-
 import { TypedEventTarget } from 'typescript-event-target';
 import { Colour, COLOURS } from './Colour.js';
 import { DrawInterface } from './types/DrawInterface';
