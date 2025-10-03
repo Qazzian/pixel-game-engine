@@ -10,3 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ArtiomTr/jest-coverage-report-action@v2
+    permissions:
+      contents: read
+      pull-requests: write
