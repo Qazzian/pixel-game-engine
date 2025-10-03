@@ -1,5 +1,4 @@
-import jsdom from 'jsdom';
-import { setupJestCanvasMock } from 'jest-canvas-mock';
+import 'jest-canvas-mock';
 import { PixelGameEngine } from './PixelGameEngine';
 
 describe('PixelGameEngine', () => {
@@ -8,9 +7,17 @@ describe('PixelGameEngine', () => {
 	});
 
 	test('can be instantiated', () => {
-		const theDom = new jsdom.JSDOM('<!DOCTYPE html>', { pretendToBeVisual: true });
-		const canvas = theDom.window.document.createElement('canvas');
+		const canvas = document.createElement('canvas');
 		const game = new PixelGameEngine(canvas, 100, 100, 10, 10);
 		expect(game instanceof PixelGameEngine).toBe(true);
+	});
+
+	test('clear method fills the canvas', () => {
+		const canvas = document.createElement('canvas');
+		const game = new PixelGameEngine(canvas, 100, 100, 10, 10);
+		const ctx = game.getContext();
+		game.clear();
+		expect(ctx.fillRect).toHaveBeenCalled();
+		expect(ctx.__getEvents()).toMatchSnapshot();
 	});
 });
