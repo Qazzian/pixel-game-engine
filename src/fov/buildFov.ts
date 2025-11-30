@@ -1,6 +1,6 @@
 import { Edge } from './Edge.js';
 import { Ray } from './Ray.js';
-import { Point } from './point.js';
+import { Point } from '../locationObjects/Position.js';
 
 export interface Intersect {
 	angle: number;
