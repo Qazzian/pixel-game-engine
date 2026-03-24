@@ -1,4 +1,5 @@
 import { Area } from './Area.js';
+import { describe, expect, test } from "vitest";
 
 describe('Area', () => {
 	test('Area Class', () => {

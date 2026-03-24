@@ -9,6 +9,7 @@ import {
 import { Edge } from './Edge.js';
 import { Ray } from './Ray.js';
 import { degToRad } from '../util.js';
+import { describe, expect, test } from "vitest";
 
 describe('FOV', () => {
 	test('id defined', () => {
@@ -59,7 +60,7 @@ describe('FOV', () => {
 		expect(getIntersection(rayOrigin, ray, lineBelow)).toBeNull();
 	});
 
-	xtest('Can find edges in the fov', () => {
+	test.skip('Can find edges in the fov', () => {
 		// const rayOrigin = {x: 1.0, y: 1.0};
 		// const geometry = [
 		// 	new Edge(0, 0, 3, 0),

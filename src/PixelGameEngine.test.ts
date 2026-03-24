@@ -1,4 +1,5 @@
-import 'jest-canvas-mock';
+import { describe, expect, test } from "vitest";
+import { setupVitestCanvasMock } from 'vitest-canvas-mock';
 import { PixelGameEngine } from './PixelGameEngine';
 
 describe('PixelGameEngine', () => {

@@ -1,5 +1,6 @@
 import { collision, testTimeFrame } from './collision.js';
 import { Area, Entity, Vector } from '../../index.js';
+import { describe, expect, test } from "vitest";
 
 describe('Collision detection', () => {
 	test('function definition', () => {
