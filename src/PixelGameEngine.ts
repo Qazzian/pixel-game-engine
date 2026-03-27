@@ -1,7 +1,7 @@
 import { TypedEventTarget } from 'typescript-event-target';
 import { Colour, COLOURS } from './Colour.js';
 import { DrawInterface } from './types/DrawInterface';
-import { Position } from './locationObjects/Position';
+import { Point } from './locationObjects/Position';
 
 export interface TimeStats {
 	timestamp: number;
@@ -232,7 +232,7 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	 * @param coords[] Array of {x, y} coordinate pairs
 	 * @param colour{Colour}
 	 */
-	drawPolygon(coords: Position[], colour: Colour) {
+	drawPolygon(coords: Point[], colour: Colour) {
 		const context = this.getContext();
 		const startPos = coords[0];
 		context.strokeStyle = colour.stringify();
