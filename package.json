@@ -1,9 +1,9 @@
 {
-  "name": "@qazzian/pixel-game-engine",
+  "name": "@Qazzian/pixel-game-engine",
   "version": "0.1.0",
   "description": "Simple game engine inspired by OneLoneCoder",
 	"publishConfig": {
-		"@qazzian:registry": "https://gitlab.com/api/v4/projects/pixel-game-engine/packages/npm/"
+		"@Qazzian:registry": "https://gitlab.com/api/v4/projects/pixel-game-engine/packages/npm/"
 	},
   "main": "cjs/index.js",
   "module": "esm/index.js",
