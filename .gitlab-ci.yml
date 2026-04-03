@@ -23,9 +23,9 @@ default:
 install:deps:
   stage: install
   script:
-    - apt-get update 
+    - apt-get update
     - apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-    - npm ci 
+    - npm ci
   artifacts:
     paths:
       - node_modules/
