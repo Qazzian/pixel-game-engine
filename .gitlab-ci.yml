@@ -12,7 +12,7 @@ stages:
   - deploy
 
 default:
-  image: node:24-alpine
+  image: node:24-trixie
   cache:
     key:
       files:
@@ -23,7 +23,9 @@ default:
 install:deps:
   stage: install
   script:
-    - npm ci
+    - apt-get update 
+    - apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+    - npm ci 
   artifacts:
     paths:
       - node_modules/
