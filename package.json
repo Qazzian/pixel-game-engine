@@ -1,6 +1,6 @@
 {
   "name": "@Qazzian/pixel-game-engine",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Simple game engine inspired by OneLoneCoder",
   "main": "cjs/index.js",
   "module": "esm/index.js",
