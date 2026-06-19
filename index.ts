@@ -1,6 +1,7 @@
 export { PixelGameEngine } from './src/PixelGameEngine.js';
 export type { TimeStats } from './src/PixelGameEngine.js';
 export { Area } from './src/locationObjects/Area.js';
+export { Extent } from './src/locationObjects/Area.js';
 export { collision } from './src/tools/collision.js';
 export { Colour, COLOURS } from './src/Colour.js';
 export { Colour as Color, COLORS } from './src/Colour.js';

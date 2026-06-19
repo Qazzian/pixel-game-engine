@@ -1,3 +1,10 @@
+export interface Extent {
+	x1: number;
+	x2: number;
+	y1: number;
+	y2: number;
+}
+
 export class Area {
 	public x1: number;
 	public x2: number;
