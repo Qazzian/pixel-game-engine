@@ -1,7 +1,7 @@
 import { TypedEventTarget } from 'typescript-event-target';
 import { Colour, COLOURS } from './Colour.js';
-import { DrawInterface } from './types/DrawInterface';
-import { Point } from './locationObjects/Position';
+import { DrawInterface } from './types/DrawInterface.js';
+import { Point } from './locationObjects/Position.js';
 
 export interface TimeStats {
 	timestamp: number;

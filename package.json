@@ -1,19 +1,19 @@
 {
   "name": "@Qazzian/pixel-game-engine",
   "version": "0.1.7",
-  "description": "Simple game engine inspired by OneLoneCoder",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "types": "esm/index.d.ts",
-  "files": [
-    "cjs",
-    "esm",
-    "src"
-  ],
-  "type": "module",
-  "scripts": {
-    "prepare": "npm run build",
-    "prebuild": "npm run clean",
+	"description": "Simple game engine inspired by OneLoneCoder",
+	"main": "cjs/index.js",
+	"module": "esm/index.js",
+	"type": "module",
+	"types": "esm/index.d.ts",
+	"files": [
+		"cjs",
+		"esm",
+		"src"
+	],
+	"scripts": {
+		"prepare": "npm run build",
+		"prebuild": "npm run clean",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
     "build:cjs": " npx rollup esm/index.js --file cjs/index.js --format cjs",

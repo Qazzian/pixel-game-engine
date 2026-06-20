@@ -1,4 +1,4 @@
-import { Colour } from '../Colour';
+import { Colour } from '../Colour.js';
 
 export interface DrawInterface {
 	clear: (backgroundColor?: Colour) => void;
