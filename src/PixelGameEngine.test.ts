@@ -1,8 +1,13 @@
-import { describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { setupVitestCanvasMock } from 'vitest-canvas-mock';
 import { PixelGameEngine } from './PixelGameEngine';
 
 describe('PixelGameEngine', () => {
+	beforeEach(() => {
+		vi.resetAllMocks();
+		setupVitestCanvasMock();
+	});
+
 	test('is defined', () => {
 		expect(PixelGameEngine).toBeDefined();
 	});
