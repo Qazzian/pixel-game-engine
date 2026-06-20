@@ -9,7 +9,7 @@ import {
 import { Edge } from './Edge.js';
 import { Ray } from './Ray.js';
 import { degToRad } from '../util.js';
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from 'vitest';
 
 describe('FOV', () => {
 	test('id defined', () => {

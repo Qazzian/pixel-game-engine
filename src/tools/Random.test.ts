@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { Random } from './Random.js';
 
 describe('Random', () => {
