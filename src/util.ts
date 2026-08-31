@@ -15,6 +15,10 @@ export async function getASeed(): Promise<string> {
 export async function fetchSeed(): Promise<string> {
 	const result = await fetch(
 		'https://www.random.org/integers/?num=1&min=1&max=100000000&col=1&base=10&format=plain&rnd=new',
+		{
+			// Want this to work quickly or reject otherwise.
+			signal: AbortSignal.timeout(1000),
+		}
 	);
 	return await result.text();
 }
