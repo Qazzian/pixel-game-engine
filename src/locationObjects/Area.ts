@@ -40,6 +40,15 @@ export class Area {
 		this.height = this.y2 - this.y1;
 	}
 
+	/**
+	 * Recalculate the width and height of the Area based on the current x1, y1, x2, y2 values.
+	 * Use this if changing the x1, y1, x2, y2 values directly.
+	 */
+	recalculateDimensions() {
+		this.width = this.x2 - this.x1;
+		this.height = this.y2 - this.y1;
+	}
+
 	equals(other: Area): boolean {
 		return this.x1 === other.x1 && this.x2 === other.x2 && this.y1 === other.y1 && this.y2 === other.y2;
 	}

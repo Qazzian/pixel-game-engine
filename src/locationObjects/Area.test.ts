@@ -27,4 +27,14 @@ describe('Area', () => {
 		expect(area1.equals(area2)).toBeFalsy();
 		expect(area1.equals(new Area(2, 5, 3, 4))).toBeTruthy();
 	});
+
+	test('Recalculate function', () => {
+		const a1 = new Area(0, 0, 2, 3);
+		a1.x2 = 5
+		a1.recalculateDimensions();
+		expect(a1.width).toBe(5);
+		a1.y2 = 10;
+		a1.recalculateDimensions();
+		expect(a1.height).toBe(10);
+	});
 });
