@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { Area } from './Area.js';
 import { accelerate, Entity, hasCollided, move } from './Entity.js';
 import { Vector } from '../../index.js';
