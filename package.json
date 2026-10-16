@@ -48,7 +48,7 @@
 		"rimraf": "^6.0.1",
 		"rollup": "^4.64.6",
 		"ts-node": "^10.9.2",
-		"typescript": "^7.0.2",
+		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.71.2",
 		"vitest": "^5.0.4",
 		"vitest-canvas-mock": "^1.2.0"
@@ -56,5 +56,8 @@
 	"dependencies": {
 		"random-seed": "^0.3.0",
 		"typescript-event-target": "^1.1.1"
+	},
+	"allowScripts": {
+		"canvas@3.2.3": true
 	}
 }
