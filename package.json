@@ -21,7 +21,7 @@
 		"test:coverage": "vitest run --coverage",
 		"test:watch": "vitest run --watch",
 		"prepush": "npm run lint && npm run test -- --color && npm run build",
-		"preversion": "build",
+		"preversion": "npm run build",
 		"postVersion": "git push && git push --tags"
 	},
 	"author": "Qazzian",
