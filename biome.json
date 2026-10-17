@@ -210,6 +210,10 @@
 			"includes": ["**/*.test.js", "**/*.test.jsx", "!cjs/**", "!esm/**"],
 			"javascript": { "globals": [] },
 			"linter": { "rules": {} }
+		},
+		{
+			"includes": ["package.json"],
+			"formatter": { "expand": "auto" }
 		}
 	],
 	"assist": {

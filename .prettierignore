@@ -1,5 +1,0 @@
-# Ignore artifacts:
-esm
-cjs
-coverage
-package-lock.json
