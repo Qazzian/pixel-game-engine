@@ -1,6 +1,6 @@
+import { Point } from '../locationObjects/Position.js';
 import { Edge } from './Edge.js';
 import { Ray } from './Ray.js';
-import { Point } from '../locationObjects/Position.js';
 
 export interface Intersect {
 	angle: number;
@@ -18,7 +18,11 @@ export function buildFov(source: Point, geometry: Edge[], radius: number) {
 		});
 }
 
-export function createRaysFromGeometry(source: Point, geometry: Edge[], radius: number) {
+export function createRaysFromGeometry(
+	source: Point,
+	geometry: Edge[],
+	radius: number,
+) {
 	return geometry.reduce((rays: Ray[], edge: Edge) => {
 		const pointList = edge.getPoints();
 		const rayList: Ray[] = pointList.reduce((allRays, point: Point) => {
@@ -29,8 +33,17 @@ export function createRaysFromGeometry(source: Point, geometry: Edge[], radius: 
 	}, [] as Ray[]);
 }
 
-export function findLineIntersections(rayOrigin: Point, lightRays: Ray[], worldGeometry: Edge[]): Intersect[] {
-	const INITIAL_INTERSECT = { x: 0, y: 0, distance: Number.MAX_VALUE, angle: 0 };
+export function findLineIntersections(
+	rayOrigin: Point,
+	lightRays: Ray[],
+	worldGeometry: Edge[],
+): Intersect[] {
+	const INITIAL_INTERSECT = {
+		x: 0,
+		y: 0,
+		distance: Number.MAX_VALUE,
+		angle: 0,
+	};
 
 	return lightRays.map((ray) => {
 		return worldGeometry.reduce((nearestIntersect, edge) => {
@@ -39,7 +52,8 @@ export function findLineIntersections(rayOrigin: Point, lightRays: Ray[], worldG
 				return nearestIntersect;
 			}
 			const intersectionPoint = getIntersection(rayOrigin, ray, edge);
-			return intersectionPoint && intersectionPoint.distance < nearestIntersect.distance
+			return intersectionPoint &&
+				intersectionPoint.distance < nearestIntersect.distance
 				? intersectionPoint
 				: nearestIntersect;
 		}, INITIAL_INTERSECT as Intersect);
@@ -47,10 +61,16 @@ export function findLineIntersections(rayOrigin: Point, lightRays: Ray[], worldG
 }
 
 function doVectorsOverlap(ray: Ray, vector: { dx: number; dy: number }) {
-	return Math.abs(ray.dx - vector.dx) === 0.0 || Math.abs(ray.dy - vector.dy) === 0.0;
+	return (
+		Math.abs(ray.dx - vector.dx) === 0.0 || Math.abs(ray.dy - vector.dy) === 0.0
+	);
 }
 
-export function getIntersection(rayOrigin: Point, ray: Ray, segment: Edge): Intersect | null {
+export function getIntersection(
+	rayOrigin: Point,
+	ray: Ray,
+	segment: Edge,
+): Intersect | null {
 	// TODO translate into my interfaces
 	// RAY in parametric: Point + Delta*T1
 	const segmentVector = segment.getVector();
@@ -61,7 +81,8 @@ export function getIntersection(rayOrigin: Point, ray: Ray, segment: Edge): Inte
 	// ==> s_px*r_dy + s_dx*T2*r_dy - r_px*r_dy = s_py*r_dx + s_dy*T2*r_dx - r_py*r_dx
 	// ==> T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx)
 	const T2 =
-		(ray.dx * (segmentVector.y - rayOrigin.y) + ray.dy * (rayOrigin.x - segmentVector.x)) /
+		(ray.dx * (segmentVector.y - rayOrigin.y) +
+			ray.dy * (rayOrigin.x - segmentVector.x)) /
 		(segmentVector.dx * ray.dy - segmentVector.dy * ray.dx);
 	const T1 = (segmentVector.x + segmentVector.dx * T2 - rayOrigin.x) / ray.dx;
 
@@ -78,7 +99,11 @@ export function getIntersection(rayOrigin: Point, ray: Ray, segment: Edge): Inte
 	};
 }
 
-export function createRaysFromPoint(source: Point, radius: number, destination: Point): Ray[] {
+export function createRaysFromPoint(
+	source: Point,
+	radius: number,
+	destination: Point,
+): Ray[] {
 	const x = destination.x - source.x;
 	const y = destination.y - source.y;
 	const angle = Math.atan2(y, x);

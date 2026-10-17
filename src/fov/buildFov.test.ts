@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest';
+import { degToRad } from '../util.js';
 import {
 	buildFov,
 	createRaysFromGeometry,
@@ -5,11 +7,8 @@ import {
 	findLineIntersections,
 	getIntersection,
 } from './buildFov.js';
-
 import { Edge } from './Edge.js';
 import { Ray } from './Ray.js';
-import { degToRad } from '../util.js';
-import { describe, expect, test } from 'vitest';
 
 describe('FOV', () => {
 	test('id defined', () => {
@@ -35,7 +34,12 @@ describe('FOV', () => {
 
 	test('findLineIntersections', () => {
 		const rayOrigin = { x: 1.0, y: 1.0 };
-		const geometry = [new Edge(0, 0, 3, 0), new Edge(0, 0, 0, 3), new Edge(0, 3, 3, 0), new Edge(3, 0, 0, 3)];
+		const geometry = [
+			new Edge(0, 0, 3, 0),
+			new Edge(0, 0, 0, 3),
+			new Edge(0, 3, 3, 0),
+			new Edge(3, 0, 0, 3),
+		];
 		const lightRays = createRaysFromGeometry(rayOrigin, geometry, 5);
 		expect(lightRays.length).toBe(geometry.length * 2 * 3);
 		const intersections = findLineIntersections(rayOrigin, lightRays, geometry);

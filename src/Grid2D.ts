@@ -2,8 +2,7 @@
  * A grid that can use negative coordinates
  * Built on a 2D Map
  */
-import {Point } from "./locationObjects/Position.js";
-
+import { Point } from './locationObjects/Position.js';
 
 export class Grid2D<Type> {
 	public readonly tiles: Map<number, Map<number, Type>>;
@@ -13,9 +12,8 @@ export class Grid2D<Type> {
 	private maxX = 0;
 	private maxY = 0;
 
-
 	constructor() {
-			this.tiles = new Map<number, Map<number, Type>>();
+		this.tiles = new Map<number, Map<number, Type>>();
 	}
 
 	get width() {
@@ -58,7 +56,6 @@ export class Grid2D<Type> {
 		if (pos.y > this.maxY) {
 			this.maxY = pos.y;
 		}
-
 	}
 
 	inRange(pos: Point): boolean {

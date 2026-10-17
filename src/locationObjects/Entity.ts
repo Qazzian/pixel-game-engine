@@ -1,6 +1,6 @@
+import { Vector } from '../../index.js';
 import { Area } from './Area.js';
 import { Position } from './Position.js';
-import { Vector } from '../../index.js';
 
 export interface EntityInterface {
 	x: number;
@@ -89,14 +89,20 @@ function cornersIntersected(subject: Entity | Area, other: Entity | Area) {
 
 function objectsOverlap(subject: Entity | Area, other: Entity | Area) {
 	const subjectIsWider =
-		subject.x <= other.x && getX2(subject) >= getX2(other) && subject.y >= other.y && getY2(subject) <= getY2(other);
+		subject.x <= other.x &&
+		getX2(subject) >= getX2(other) &&
+		subject.y >= other.y &&
+		getY2(subject) <= getY2(other);
 
 	if (subjectIsWider) {
 		return true;
 	}
 
 	const otherIsWider =
-		other.x <= subject.x && getX2(other) >= getX2(subject) && other.y >= subject.y && getY2(other) <= getY2(subject);
+		other.x <= subject.x &&
+		getX2(other) >= getX2(subject) &&
+		other.y >= subject.y &&
+		getY2(other) <= getY2(subject);
 
 	return otherIsWider;
 }

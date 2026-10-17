@@ -50,6 +50,11 @@ export class Area {
 	}
 
 	equals(other: Area): boolean {
-		return this.x1 === other.x1 && this.x2 === other.x2 && this.y1 === other.y1 && this.y2 === other.y2;
+		return (
+			this.x1 === other.x1 &&
+			this.x2 === other.x2 &&
+			this.y1 === other.y1 &&
+			this.y2 === other.y2
+		);
 	}
 }

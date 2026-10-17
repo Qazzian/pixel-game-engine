@@ -1,5 +1,5 @@
-import { Area } from './Area.js';
 import { describe, expect, test } from 'vitest';
+import { Area } from './Area.js';
 
 describe('Area', () => {
 	test('Area Class', () => {
@@ -30,7 +30,7 @@ describe('Area', () => {
 
 	test('Recalculate function', () => {
 		const a1 = new Area(0, 0, 2, 3);
-		a1.x2 = 5
+		a1.x2 = 5;
 		a1.recalculateDimensions();
 		expect(a1.width).toBe(5);
 		a1.y2 = 10;

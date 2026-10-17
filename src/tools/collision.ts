@@ -1,6 +1,11 @@
 import { Area } from '../locationObjects/Area.js';
-import { Entity } from '../locationObjects/Entity.js';
-import { getX2, getY2, hasCollided, move } from '../locationObjects/Entity.js';
+import {
+	Entity,
+	getX2,
+	getY2,
+	hasCollided,
+	move,
+} from '../locationObjects/Entity.js';
 
 export interface CollisionRecord {
 	didCollide: boolean;
@@ -16,7 +21,11 @@ export interface CollisionRecord {
  * @param timeFrame How many milliseconds to simulate the collision over
  * @returns
  */
-export function collision(a: Entity, b: Entity, timeFrame: number): CollisionRecord {
+export function collision(
+	a: Entity,
+	b: Entity,
+	timeFrame: number,
+): CollisionRecord {
 	const couldHaveCollided = testTimeFrame(a, b, timeFrame);
 	if (!couldHaveCollided) {
 		return noCollision(a, b);
@@ -36,7 +45,11 @@ export function collision(a: Entity, b: Entity, timeFrame: number): CollisionRec
 	return splitAndTest(a, b, timeFrame);
 }
 
-function splitAndTest(a: Entity, b: Entity, timeFrame: number): CollisionRecord {
+function splitAndTest(
+	a: Entity,
+	b: Entity,
+	timeFrame: number,
+): CollisionRecord {
 	const halfTime = timeFrame / 2;
 	const lateA = move(a, halfTime);
 	const lateB = move(b, halfTime);

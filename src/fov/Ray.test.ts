@@ -1,5 +1,5 @@
-import { Ray } from './Ray.js';
 import { degToRad } from '../util.js';
+import { Ray } from './Ray.js';
 
 test('makeRay', () => {
 	expect(new Ray(0, 10)).toMatchObject({ angle: 0, dx: 10, dy: 0 });

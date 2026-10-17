@@ -18,7 +18,7 @@ export async function fetchSeed(): Promise<string> {
 		{
 			// Want this to work quickly or reject otherwise.
 			signal: AbortSignal.timeout(1000),
-		}
+		},
 	);
 	return await result.text();
 }

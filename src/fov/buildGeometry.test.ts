@@ -1,5 +1,5 @@
-import { buildGeometry } from './buildGeometry.js';
 import { Grid } from '../Grid.js';
+import { buildGeometry } from './buildGeometry.js';
 
 describe('buildGeometry', () => {
 	test('is defined', () => {

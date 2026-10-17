@@ -6,11 +6,7 @@
 	"module": "esm/index.js",
 	"type": "module",
 	"types": "esm/index.d.ts",
-	"files": [
-		"cjs",
-		"esm",
-		"src"
-	],
+	"files": ["cjs", "esm", "src"],
 	"scripts": {
 		"prepare": "npm run build",
 		"prebuild": "npm run clean",

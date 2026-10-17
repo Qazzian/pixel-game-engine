@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
+import { Vector } from '../../index.js';
 import { Area } from './Area.js';
 import { accelerate, Entity, hasCollided, move } from './Entity.js';
-import { Vector } from '../../index.js';
 
 describe('Entity Class', () => {
 	test('constructor', () => {

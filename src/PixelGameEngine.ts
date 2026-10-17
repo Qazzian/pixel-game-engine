@@ -1,7 +1,7 @@
 import { TypedEventTarget } from 'typescript-event-target';
-import { Colour, COLOURS } from './Colour.js';
-import { DrawInterface } from './types/DrawInterface.js';
+import { COLOURS, Colour } from './Colour.js';
 import { Point } from './locationObjects/Position.js';
+import { DrawInterface } from './types/DrawInterface.js';
 
 export interface TimeStats {
 	timestamp: number;
@@ -17,7 +17,10 @@ interface GameEvents {
 	stop: CustomEvent<null>;
 }
 
-export class PixelGameEngine extends TypedEventTarget<GameEvents> implements DrawInterface {
+export class PixelGameEngine
+	extends TypedEventTarget<GameEvents>
+	implements DrawInterface
+{
 	private canvas: HTMLCanvasElement;
 	private context: CanvasRenderingContext2D | null;
 	private width: number;
@@ -37,7 +40,13 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	 * @param pixelWidth How many gamePixels to fit in the canvas width
 	 * @param pixelHeight How many gamePixels to fit in the canvas height
 	 */
-	constructor(canvas: HTMLCanvasElement, width: number, height: number, pixelWidth: number, pixelHeight: number) {
+	constructor(
+		canvas: HTMLCanvasElement,
+		width: number,
+		height: number,
+		pixelWidth: number,
+		pixelHeight: number,
+	) {
 		super();
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
@@ -75,7 +84,10 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 		if (!this.isRunning) {
 			return;
 		}
-		this.dispatchTypedEvent('before-update', new CustomEvent('before-update', { detail: timestamp }));
+		this.dispatchTypedEvent(
+			'before-update',
+			new CustomEvent('before-update', { detail: timestamp }),
+		);
 		const timePassed = timestamp - this.lastTimestamp;
 		this.lastTimestamp = timestamp;
 		const fps = Math.round(1000 / timePassed);
@@ -85,8 +97,14 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 			fps,
 		};
 
-		this.dispatchTypedEvent('update', new CustomEvent('update', { detail: timeStats }));
-		this.dispatchTypedEvent('after-update', new CustomEvent('after-update', { detail: timeStats }));
+		this.dispatchTypedEvent(
+			'update',
+			new CustomEvent('update', { detail: timeStats }),
+		);
+		this.dispatchTypedEvent(
+			'after-update',
+			new CustomEvent('after-update', { detail: timeStats }),
+		);
 
 		window.requestAnimationFrame((timestamp) => this.step(timestamp));
 	}
@@ -118,7 +136,12 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	draw(x: number, y: number, color: Colour) {
 		const context = this.getContext();
 		context.fillStyle = color.stringify();
-		context.fillRect(x * this.pixelWidth, y * this.pixelHeight, this.pixelWidth, this.pixelHeight);
+		context.fillRect(
+			x * this.pixelWidth,
+			y * this.pixelHeight,
+			this.pixelWidth,
+			this.pixelHeight,
+		);
 	}
 
 	/**
@@ -165,8 +188,14 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 		const yPost = y1 < y2 ? this.pixelHeight : 0;
 		context.beginPath();
 		context.moveTo(x1 * this.pixelWidth, y1 * this.pixelHeight + yPre);
-		context.lineTo(x1 * this.pixelWidth + this.pixelWidth, y1 * this.pixelHeight + yPre);
-		context.lineTo(x2 * this.pixelWidth + this.pixelWidth, y2 * this.pixelHeight + yPost);
+		context.lineTo(
+			x1 * this.pixelWidth + this.pixelWidth,
+			y1 * this.pixelHeight + yPre,
+		);
+		context.lineTo(
+			x2 * this.pixelWidth + this.pixelWidth,
+			y2 * this.pixelHeight + yPost,
+		);
 		context.lineTo(x2 * this.pixelWidth, y2 * this.pixelHeight + yPost);
 		context.closePath();
 		context.fill();
@@ -196,7 +225,12 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	fillRect(x: number, y: number, width: number, height: number, color: Colour) {
 		const context = this.getContext();
 		context.fillStyle = color.stringify();
-		context.fillRect(x * this.pixelWidth, y * this.pixelHeight, width * this.pixelWidth, height * this.pixelHeight);
+		context.fillRect(
+			x * this.pixelWidth,
+			y * this.pixelHeight,
+			width * this.pixelWidth,
+			height * this.pixelHeight,
+		);
 	}
 
 	fillBackground(color: Colour = COLOURS.BLACK) {
@@ -211,7 +245,13 @@ export class PixelGameEngine extends TypedEventTarget<GameEvents> implements Dra
 	 * @param height{number}
 	 * @param colour{Colour}
 	 */
-	drawRect(x: number, y: number, width: number, height: number, colour: Colour) {
+	drawRect(
+		x: number,
+		y: number,
+		width: number,
+		height: number,
+		colour: Colour,
+	) {
 		const context = this.getContext();
 		context.strokeStyle = colour.stringify();
 
