@@ -34,6 +34,7 @@
 		"@babel/core": "^8.0.7",
 		"@babel/preset-env": "^8.0.7",
 		"@babel/preset-typescript": "^8.0.7",
+		"@biomejs/biome": "2.5.15",
 		"@eslint/js": "^10.0.1",
 		"@tsconfig/node-lts": "^24.0.1",
 		"@types/jsdom": "^30.0.0",
