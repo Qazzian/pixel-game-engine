@@ -28,7 +28,7 @@ export function buildGeometry(
 	}
 
 	try {
-		mapTiles.forEach((mapTile: unknown, x: number, y: number) => {
+		mapTiles.forEach((mapTile: unknown, { x, y }) => {
 			if (isBlock(mapTile)) {
 				const neighbours = {
 					n: getNeighbour(x, y, DIRECTION.n),
@@ -92,7 +92,7 @@ export function buildGeometry(
 	}
 
 	function getNeighbour(x: number, y: number, direction: number[]) {
-		return mapTiles.get(x + direction[0], y + direction[1]);
+		return mapTiles.get({ x: x + direction[0], y: y + direction[1] });
 	}
 }
 

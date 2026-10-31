@@ -1,4 +1,7 @@
-export class Grid<Type> {
+import { Point, Position } from './locationObjects/Position.js';
+import { GridInterface } from './types/GridInterface.js';
+
+export class Grid<Type> implements GridInterface {
 	public readonly tiles: Type[][];
 	public readonly width: number;
 	public readonly height: number;
@@ -14,7 +17,7 @@ export class Grid<Type> {
 		}
 	}
 
-	inRange(x: number, y: number): boolean {
+	inRange({ x, y }: Point): boolean {
 		if (x < 0) {
 			return false;
 		}
@@ -27,18 +30,18 @@ export class Grid<Type> {
 		return y < this.height;
 	}
 
-	get(x: number, y: number): Type | undefined {
-		if (this.inRange(x, y)) {
+	get({ x, y }: Point): Type | undefined {
+		if (this.inRange({ x, y })) {
 			return this.tiles[x][y];
 		}
 	}
 
-	forEach(callback: { (mapTile: Type, x: number, y: number): void }) {
+	forEach(callback: { (mapTile: Type, { x, y }: Point): void }) {
 		if (this.tiles.length === 0) return;
 		this.tiles.forEach((mapRow, x) => {
 			if (mapRow.length === 0) return;
 			mapRow.forEach((mapTIle, y) => {
-				callback(mapTIle, x, y);
+				callback(mapTIle, { x, y });
 			});
 		});
 	}

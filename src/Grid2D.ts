@@ -3,8 +3,9 @@
  * Built on a 2D Map
  */
 import { Point } from './locationObjects/Position.js';
+import { GridInterface } from './types/GridInterface.js';
 
-export class Grid2D<Type> {
+export class Grid2D<Type> implements GridInterface {
 	public readonly tiles: Map<number, Map<number, Type>>;
 
 	private minX = 0;
@@ -14,6 +15,9 @@ export class Grid2D<Type> {
 
 	constructor() {
 		this.tiles = new Map<number, Map<number, Type>>();
+	}
+	forEach(callback: (value: unknown, position: Point) => void): void {
+		throw new Error('Method not implemented.');
 	}
 
 	get width() {
