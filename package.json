@@ -1,6 +1,6 @@
 {
 	"name": "@Qazzian/pixel-game-engine",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"description": "Simple game engine inspired by OneLoneCoder",
 	"main": "cjs/index.js",
 	"module": "esm/index.js",
@@ -15,7 +15,7 @@
 		"prepare": "npm run build",
 		"prebuild": "npm run clean",
 		"build": "npm run build:esm && npm run build:cjs",
-		"build:esm": "tsc",
+		"build:esm": "tsc --declaration --declarationMap",
 		"build:cjs": " npx rollup esm/index.js --file cjs/index.js --format cjs",
 		"build:watch": "tsc -w",
 		"clean": "rimraf esm cjs",
