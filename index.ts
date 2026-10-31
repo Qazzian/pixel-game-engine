@@ -1,6 +1,7 @@
 export { COLORS, COLOURS, Colour, Colour as Color } from './src/Colour.js';
 export * as fov from './src/fov/index.js';
 export { Grid } from './src/Grid.js';
+export { Grid2D } from './src/Grid2D.js';
 export { Area, Extent } from './src/locationObjects/Area.js';
 export { Entity } from './src/locationObjects/Entity.js';
 export type { Point } from './src/locationObjects/Position.js';
