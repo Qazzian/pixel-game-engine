@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { Edge } from './Edge.js';
 
 describe('FOV functions', () => {

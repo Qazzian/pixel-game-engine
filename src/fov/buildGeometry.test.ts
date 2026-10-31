@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest';
 import { Grid } from '../Grid.js';
 import { buildGeometry } from './buildGeometry.js';
 
