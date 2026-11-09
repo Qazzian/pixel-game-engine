@@ -14,4 +14,5 @@ export { PixelGameEngine } from './src/PixelGameEngine.js';
 export { collision } from './src/tools/collision.js';
 export { Random } from './src/tools/Random.js';
 export type { DrawInterface } from './src/types/DrawInterface.js';
+export { GridInterface } from './src/types/GridInterface.js';
 export * as util from './src/util.js';
